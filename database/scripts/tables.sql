@@ -1,0 +1,1 @@
+CREATE TABLE Contato(id INTEGER PRIMARY KEY AUTOINCREMENT, razao_social varchar(255), telefone_1 varchar(255), telefone_2 varchar(255), telefone_3 varchar(255), cnpj_cpf varchar(14), localidade varchar(255), uf varchar(2));
