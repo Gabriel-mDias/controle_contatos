@@ -5,6 +5,7 @@
  */
 package br.controle_contatos.main;
 
+import br.controle_contatos.business.ClienteBusiness;
 import br.controle_contatos.dao.ClienteDAO;
 import br.controle_contatos.models.Cliente;
 
@@ -19,7 +20,7 @@ public class Principal {
         try{
             System.out.println("Resultado da consulta: ");
             
-            for(Cliente elemento : new ClienteDAO().getByParametros(null)){
+            for(Cliente elemento : new ClienteBusiness().getByParametros(new Cliente())){
                 System.out.println(elemento.toString());
             }
             
