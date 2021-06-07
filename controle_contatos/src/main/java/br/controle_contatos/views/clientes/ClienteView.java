@@ -5,13 +5,10 @@
  */
 package br.controle_contatos.views.clientes;
 
-import javax.accessibility.AccessibleContext;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
@@ -19,7 +16,7 @@ import javax.swing.JTextField;
  *
  * @author gabriel
  */
-public class ClienteView extends javax.swing.JFrame {
+public class ClienteView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CreateCliente
@@ -37,7 +34,7 @@ public class ClienteView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        frameCreateCliente = new javax.swing.JInternalFrame();
+        btnConfirmar = new javax.swing.JButton();
         lblInformacoes = new javax.swing.JLabel();
         insertPane = new javax.swing.JTabbedPane();
         panelCliente = new javax.swing.JPanel();
@@ -70,13 +67,13 @@ public class ClienteView extends javax.swing.JFrame {
         txtCep = new javax.swing.JFormattedTextField();
         lblUf = new javax.swing.JLabel();
         cbUf = new javax.swing.JComboBox<>();
-        btnConfirmar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
         setTitle("Cliente");
 
-        frameCreateCliente.setTitle("Cliente");
-        frameCreateCliente.setVisible(true);
+        btnConfirmar.setText("Confirmar");
 
         lblInformacoes.setText("Informações:");
 
@@ -110,15 +107,14 @@ public class ClienteView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtTelefone4, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                    .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblTelefone4, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                        .addComponent(lblTelefone1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtTelefone1)
-                        .addComponent(lblTelefone2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtTelefone2)
-                        .addComponent(lblTelefone3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtTelefone3)))
-                .addContainerGap(290, Short.MAX_VALUE))
+                    .addComponent(lblTelefone4, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                    .addComponent(lblTelefone1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTelefone1)
+                    .addComponent(lblTelefone2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTelefone2)
+                    .addComponent(lblTelefone3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTelefone3))
+                .addContainerGap(337, Short.MAX_VALUE))
         );
         panelClienteLayout.setVerticalGroup(
             panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +147,7 @@ public class ClienteView extends javax.swing.JFrame {
                 .addComponent(lblTelefone4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTelefone4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         insertPane.addTab("Cliente", panelCliente);
@@ -205,7 +201,7 @@ public class ClienteView extends javax.swing.JFrame {
                 .addGroup(panelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblUf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbUf, 0, 190, Short.MAX_VALUE))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelEnderecoLayout.setVerticalGroup(
             panelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,61 +232,43 @@ public class ClienteView extends javax.swing.JFrame {
                 .addComponent(lblBairro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         insertPane.addTab("Endereço", panelEndereco);
-
-        btnConfirmar.setText("Confirmar");
-
-        javax.swing.GroupLayout frameCreateClienteLayout = new javax.swing.GroupLayout(frameCreateCliente.getContentPane());
-        frameCreateCliente.getContentPane().setLayout(frameCreateClienteLayout);
-        frameCreateClienteLayout.setHorizontalGroup(
-            frameCreateClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(frameCreateClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(frameCreateClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(insertPane)
-                    .addGroup(frameCreateClienteLayout.createSequentialGroup()
-                        .addComponent(lblInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frameCreateClienteLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        frameCreateClienteLayout.setVerticalGroup(
-            frameCreateClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(frameCreateClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblInformacoes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(insertPane, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnConfirmar)
-                .addContainerGap())
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(frameCreateCliente)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(insertPane, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(frameCreateCliente)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblInformacoes)
+                .addGap(20, 20, 20)
+                .addComponent(insertPane, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnConfirmar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JComboBox<String> cbUf;
-    private javax.swing.JInternalFrame frameCreateCliente;
     private javax.swing.JTabbedPane insertPane;
     private javax.swing.JLabel lblBairro;
     private javax.swing.JLabel lblCEP;
@@ -330,14 +308,6 @@ public class ClienteView extends javax.swing.JFrame {
 
     public void setCbUf(JComboBox<String> cbUf) {
         this.cbUf = cbUf;
-    }
-
-    public JInternalFrame getFrameCreateCliente() {
-        return frameCreateCliente;
-    }
-
-    public void setFrameCreateCliente(JInternalFrame frameCreateCliente) {
-        this.frameCreateCliente = frameCreateCliente;
     }
 
     public JTabbedPane getInsertPane() {

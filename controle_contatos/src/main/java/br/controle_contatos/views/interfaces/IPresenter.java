@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.controle_contatos.main;
-
-import br.controle_contatos.views.TelaPrincipalPresenter;
+package br.controle_contatos.views.interfaces;
 
 /**
  *
  * @author gabriel
  */
-public class Principal {
+public interface IPresenter {
     
-    public static void main(String args[]){
-        new TelaPrincipalPresenter();
-    }
+    public void initComponents() throws Exception;
+    
+    public void centralizarTela() throws Exception;
 }
