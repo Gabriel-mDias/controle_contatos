@@ -22,22 +22,39 @@ public class GerarBaseDados {
         for (int i = 0; i < cnpjClientes.length; i++) {
             cnpjClientes[i] = clientesPDF.get(i).getCnpj();
             cnpjClientes[i] = cnpjClientes[i].replace(".", "").replace("/", "").replace("-", "");
-            //System.out.println(cnpjClientes[i]);
+            System.out.println(clientesPDF.size());
         }
 
         ArrayList<Cliente> clientes = new ArrayList<>();
-
+        
+        for( Cliente c: clientes ){
+            for( ClientePDF pdf: clientesPDF ){
+               if( pdf.getCnpj().replace(".", "").replace("/", "").replace("-", "") == c.getCnpjCpf() ){
+                   c.setTipo( pdf.getTipo() );
+                   c.setLojaRisco( pdf.getLojaRisco(str) );
+                   c.setCodigo( pdf.getCodigo() );
+               } 
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
         ConsumoAPI api = new ConsumoAPI();
 
-        for (int i = 0; i < cnpjClientes.length; i++) {
-            Cliente c = api.getClienteByCNPJ( cnpjClientes[i] );
-            clientes.add(c);
-        }
+       // for (int i = 0; i < cnpjClientes.length; i++) {
+      //   //   Cliente c = api.getClienteByCNPJ( cnpjClientes[i] );
+         //   System.out.println(cnpjClientes.length);
+          //  clientes.add(c);
+      //  }
 
-        for(Cliente c: clientes){
-            c.toString();
-            System.out.printf("\n");
-        }
+        //for(Cliente c: clientes){
+            
+        //    System.out.printf("\n");
+       // }
         
         
     }
