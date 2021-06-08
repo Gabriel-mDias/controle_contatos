@@ -23,7 +23,7 @@ public class ClienteDAO {
     
     public void insert(Cliente cliente) throws Exception {
         try {
-            String query = "INSERT INTO Cliente(razao_social, telefone_1, telefone_2, telefone_3, telefone_4, cnpj_cpf, nome_fantasia "
+            String query = "INSERT INTO Cliente(razao_social, telefone, cnpj_cpf, nome_fantasia "
                        + cliente.getEndereco() != null ? ", id_endereco ) " : " ) "
                        + "VALUES (?,?,?,?,?,?,?" 
                        + cliente.getEndereco() != null ? ",?" : "" 
@@ -34,10 +34,7 @@ public class ClienteDAO {
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, cliente.getRazaoSocial());
-            ps.setString(2, cliente.getTelefone1());
-            ps.setString(3, cliente.getTelefone2());
-            ps.setString(4, cliente.getTelefone3());
-            ps.setString(5, cliente.getTelefone4());
+            ps.setString(2, cliente.getTelefone());
             ps.setString(6, cliente.getCnpjCpf());
             ps.setString(7, cliente.getNomeFantasia());
             if(cliente.getEndereco() != null){
@@ -57,7 +54,7 @@ public class ClienteDAO {
     
     public List<Cliente> getByParametros(Cliente cliente) throws Exception {
         try {
-            StringBuilder query = new StringBuilder("SELECT c.id, c.razao_social, c.nome_fantasia, c.telefone_1, c.telefone_2, c.telefone_3, c.telefone_4, c.cnpj_cpf, ");
+            StringBuilder query = new StringBuilder("SELECT c.id, c.razao_social, c.nome_fantasia, c.telefone, c.cnpj_cpf, ");
             query.append(" e.id, e.logradouro, e.numero, e.complemento, e.bairro, e.municipio, e.cep, e.uf ");
             query.append(" FROM Cliente c, Endereco e ");
             query.append(" WHERE c.id_endereco = e.id ");
@@ -76,20 +73,8 @@ public class ClienteDAO {
                     query.append(" AND UPPER(c.nome_fantasia) LIKE ? ");
                 }
                 
-                if(cliente.getTelefone1() != null && cliente.getTelefone1().length() > 0 ){
-                    query.append(" AND c.telefone_1 LIKE ? ");
-                }
-                
-                if(cliente.getTelefone2() != null && cliente.getTelefone2().length() > 0 ){
-                    query.append(" AND c.telefone_2 LIKE ? ");
-                }
-                
-                if(cliente.getTelefone3() != null && cliente.getTelefone3().length() > 0 ){
-                    query.append(" AND c.telefone_3 LIKE ? ");
-                }
-                
-                if(cliente.getTelefone4() != null && cliente.getTelefone4().length() > 0 ){
-                    query.append(" AND c.telefone_4 LIKE ? ");
+                if(cliente.getTelefone() != null && cliente.getTelefone().length() > 0 ){
+                    query.append(" AND c.telefone LIKE ? ");
                 }
                 
                 if(cliente.getCnpjCpf() != null && cliente.getCnpjCpf().length() > 0 ){
@@ -149,22 +134,10 @@ public class ClienteDAO {
                     ps.setString(posicao++,"%"+cliente.getNomeFantasia().toUpperCase()+"%");
                 }
                 
-                if(cliente.getTelefone1() != null && cliente.getTelefone1().length() > 0 ){
-                    ps.setString(posicao++,"%"+cliente.getTelefone1()+"%");
+                if(cliente.getTelefone() != null && cliente.getTelefone().length() > 0 ){
+                    ps.setString(posicao++,"%"+cliente.getTelefone()+"%");
                 }
-                
-                if(cliente.getTelefone2() != null && cliente.getTelefone2().length() > 0 ){
-                    ps.setString(posicao++,"%"+cliente.getTelefone2()+"%");
-                }
-                
-                if(cliente.getTelefone3() != null && cliente.getTelefone3().length() > 0 ){
-                    ps.setString(posicao++,"%"+cliente.getTelefone3()+"%");
-                }
-                
-                if(cliente.getTelefone4() != null && cliente.getTelefone4().length() > 0 ){
-                    ps.setString(posicao++,"%"+cliente.getTelefone4()+"%");
-                }
-                
+                 
                 if(cliente.getCnpjCpf() != null && cliente.getCnpjCpf().length() > 0 ){
                     ps.setString(posicao++,"%"+cliente.getCnpjCpf()+"%");
                 }
@@ -211,10 +184,7 @@ public class ClienteDAO {
                 elemento.setId(rs.getLong("id"));
                 elemento.setRazaoSocial(rs.getString("razao_social"));
                 elemento.setNomeFantasia(rs.getString("nome_fantasia"));
-                elemento.setTelefone1(rs.getString("telefone_1"));
-                elemento.setTelefone2(rs.getString("telefone_2"));
-                elemento.setTelefone3(rs.getString("telefone_3"));
-                elemento.setTelefone4(rs.getString("telefone_4"));
+                elemento.setTelefone(rs.getString("telefone"));
                 elemento.setCnpjCpf(rs.getString("cnpj_cpf"));
                 
                 enderecoElemento.setLogradouro(rs.getString("logradouro"));
