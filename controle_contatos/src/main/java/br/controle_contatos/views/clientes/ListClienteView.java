@@ -5,6 +5,13 @@
  */
 package br.controle_contatos.views.clientes;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author gabriel
@@ -126,4 +133,78 @@ public class ListClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblClientes;
     private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public void setBtnBuscar(JButton btnBuscar) {
+        this.btnBuscar = btnBuscar;
+    }
+
+    public JButton getBtnEditar() {
+        return btnEditar;
+    }
+
+    public void setBtnEditar(JButton btnEditar) {
+        this.btnEditar = btnEditar;
+    }
+
+    public JButton getBtnExcluir() {
+        return btnExcluir;
+    }
+
+    public void setBtnExcluir(JButton btnExcluir) {
+        this.btnExcluir = btnExcluir;
+    }
+
+    public JButton getBtnExibir() {
+        return btnExibir;
+    }
+
+    public void setBtnExibir(JButton btnExibir) {
+        this.btnExibir = btnExibir;
+    }
+
+    public JComboBox<String> getCbBusca() {
+        return cbBusca;
+    }
+
+    public void setCbBusca(JComboBox<String> cbBusca) {
+        this.cbBusca = cbBusca;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setjScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    public JLabel getLblFiltros() {
+        return lblFiltros;
+    }
+
+    public void setLblFiltros(JLabel lblFiltros) {
+        this.lblFiltros = lblFiltros;
+    }
+
+    public JTable getTblClientes() {
+        return tblClientes;
+    }
+
+    public void setTblClientes(JTable tblClientes) {
+        this.tblClientes = tblClientes;
+    }
+
+    public JTextField getTxtFiltro() {
+        return txtFiltro;
+    }
+
+    public void setTxtFiltro(JTextField txtFiltro) {
+        this.txtFiltro = txtFiltro;
+    }
+
+    
 }

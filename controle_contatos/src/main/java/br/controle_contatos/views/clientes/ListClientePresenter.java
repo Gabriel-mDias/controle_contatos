@@ -5,9 +5,16 @@
  */
 package br.controle_contatos.views.clientes;
 
+import br.controle_contatos.business.ClienteBusiness;
+import br.controle_contatos.models.Cliente;
 import br.controle_contatos.views.interfaces.IPresenter;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JDesktopPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +24,15 @@ public class ListClientePresenter implements IPresenter{
     
     private ListClienteView view;
     private JDesktopPane containerPai;
+    private ClienteBusiness clienteBusiness;
+    private Cliente filtro;
+    private List<Cliente> buscados;
     
     public ListClientePresenter(JDesktopPane containerPai){
+        filtro = new Cliente();
+        buscados = new ArrayList<>();
+        clienteBusiness = new ClienteBusiness();
+        
         try{
             this.containerPai = containerPai;
             this.view = new ListClienteView();
@@ -38,6 +52,12 @@ public class ListClientePresenter implements IPresenter{
 
     @Override
     public void initComponents() throws Exception {
+        this.view.getBtnBuscar().addActionListener( new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buscarContatos();
+            }
+        });
     }
 
     @Override
@@ -48,4 +68,46 @@ public class ListClientePresenter implements IPresenter{
                               (desktopSize.height - jInternalFrameSize.height) / 2);
     }
     
+    public void buscarContatos(){
+        try{
+            String valorBuscado = this.view.getTxtFiltro().getText();
+        
+            switch ( this.view.getCbBusca().getSelectedIndex() ){
+                case 0:
+                    filtro.setCnpjCpf(valorBuscado);
+                    break;
+                case 1:
+                    filtro.setNomeFantasia(valorBuscado);
+                    break;
+                case 2:
+                    filtro.setRazaoSocial(valorBuscado);
+                    break;
+                default:
+                    filtro.setCnpjCpf(valorBuscado);
+                    break;
+            }
+
+            this.buscados.clear();
+            this.buscados.addAll(this.clienteBusiness.getByParametros(filtro));
+            this.preencheTabela();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+    }
+    
+    private void preencheTabela(){
+        var dadosTabela = new DefaultTableModel(new Object[]{"CNPJ ou CPF", "Nome Fantasia", "Razão Social"}, 0);
+        
+        for(Cliente elemento : buscados){
+            dadosTabela.addRow( new Object[]{
+                elemento.getCnpjCpf(),
+                elemento.getNomeFantasia(),
+                elemento.getRazaoSocial()
+            });
+        }
+        
+        this.view.getTblClientes().setModel(dadosTabela);
+    }
 }

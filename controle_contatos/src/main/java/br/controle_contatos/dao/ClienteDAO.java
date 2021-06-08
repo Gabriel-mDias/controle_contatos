@@ -24,9 +24,9 @@ public class ClienteDAO {
     public void insert(Cliente cliente) throws Exception {
         try {
             String query = "INSERT INTO Cliente(razao_social, telefone_1, telefone_2, telefone_3, telefone_4, cnpj_cpf, nome_fantasia "
-                       + cliente.getEndereco() != null ? ", id_endereco ) " : " ) "
+                       + (cliente.getEndereco() != null ? ", id_endereco ) " : " ) ")
                        + "VALUES (?,?,?,?,?,?,?" 
-                       + cliente.getEndereco() != null ? ",?" : "" 
+                       + (cliente.getEndereco() != null ? ",?" : "") 
                        + ")";
 
             Connection conn = this.manager.conectar();
