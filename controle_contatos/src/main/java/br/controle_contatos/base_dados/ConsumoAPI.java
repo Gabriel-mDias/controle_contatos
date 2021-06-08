@@ -30,7 +30,7 @@ import java.util.logging.Logger;
  */
 public class ConsumoAPI {
 
-    public Cliente getClienteByCNPJ(String cnpj) throws MalformedURLException, IOException {
+    public Cliente getClienteByCNPJ(String cnpj) throws Exception {
 
         URL url = new URL("https://minhareceita.org/" + cnpj);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

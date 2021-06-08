@@ -23,7 +23,7 @@ public class ClienteDAO {
     
     public void insert(Cliente cliente) throws Exception {
         try {
-            String query = "INSERT INTO Cliente(razao_social, telefone, cnpj_cpf, nome_fantasia "
+            String query = "INSERT INTO Cliente(razao_social, telefone, cnpj_cpf, nome_fantasia, "
                        + cliente.getEndereco() != null ? ", id_endereco ) " : " ) "
                        + "VALUES (?,?,?,?,?,?,?" 
                        + cliente.getEndereco() != null ? ",?" : "" 

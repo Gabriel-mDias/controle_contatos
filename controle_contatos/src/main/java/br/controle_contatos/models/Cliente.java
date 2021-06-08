@@ -18,6 +18,8 @@ public class Cliente {
     private String cnpjCpf;
     private String contato;
     private Endereco endereco;
+    private Integer codigo;
+    private String tipo;
 
     public Cliente(){
         this.endereco = new Endereco();
@@ -114,4 +116,19 @@ public class Cliente {
         this.endereco = endereco;
     }
 
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }

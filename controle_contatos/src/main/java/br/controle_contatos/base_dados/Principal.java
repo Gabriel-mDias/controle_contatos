@@ -17,9 +17,9 @@ import java.io.IOException;
 public class Principal {
     
     public static void main(String args[]) throws IOException{
-       ConsumoAPI api = new ConsumoAPI();
-       Cliente c = api.getClienteByCNPJ("36325447000188");
-       System.out.println(c.toString());
+       //ConsumoAPI api = new ConsumoAPI();
+       //Cliente c = api.getClienteByCNPJ("36325447000188");
+      // System.out.println(c.toString());
     // new TelaPrincipalPresenter();
     }
 }
