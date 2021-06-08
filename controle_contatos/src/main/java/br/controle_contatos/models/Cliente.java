@@ -18,9 +18,10 @@ public class Cliente {
     private String cnpjCpf;
     private String contato;
     private Endereco endereco;
-    private Integer codigo;
+    private String codigo;
     private String tipo;
-
+    private String lojaRisco;
+    
     public Cliente(){
         this.endereco = new Endereco();
     }
@@ -58,14 +59,6 @@ public class Cliente {
                 + "\nMunicípio: " + this.getEndereco().getMunicipio()
                 + "\nCep: " + this.getEndereco().getCep()
                 + "\nUF: " + this.getEndereco().getUf();
-    }
-
-    public String getContato() {
-        return contato;
-    }
-
-    public void setContato(String contato) {
-        this.contato = contato;
     }
 
     public Long getId() {
@@ -108,6 +101,14 @@ public class Cliente {
         this.cnpjCpf = cnpjCpf;
     }
 
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
+    }
+
     public Endereco getEndereco() {
         return endereco;
     }
@@ -116,11 +117,11 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public Integer getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -131,4 +132,14 @@ public class Cliente {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public String getLojaRisco() {
+        return lojaRisco;
+    }
+
+    public void setLojaRisco(String lojaRisco) {
+        this.lojaRisco = lojaRisco;
+    }
+
+   
 }
