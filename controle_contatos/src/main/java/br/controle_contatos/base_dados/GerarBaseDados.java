@@ -7,15 +7,19 @@ import br.controle_contatos.models.Cliente;
 import br.controle_contatos.models.ClientePDF;
 import br.controle_contatos.models.ClientePlanilha;
 import java.io.IOException;
+import static java.lang.reflect.Array.set;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import org.apache.commons.codec.DecoderException;
 import org.apache.commons.lang3.StringUtils;
 
 public class GerarBaseDados {
 
     private ClienteBusiness clienteBusiness = new ClienteBusiness();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, DecoderException {
 
         LerTabelaPdf lerPDF = new LerTabelaPdf();
         //ArrayList<ClientePDF> clientesPDF = lerPDF.lerDados("/home/gabriel/Downloads/Clientes Sergio[565] (1).pdf");           //biel
@@ -44,22 +48,29 @@ public class GerarBaseDados {
             }
         }
 
+        ArrayList<String> municipios = new ArrayList<>();
+
         for (Cliente c : clientes) {
+            municipios.add(c.getEndereco().getMunicipio());
             for (ClientePDF pdf : clientesPDF) {
                 if (pdf.getCnpj().replace(".", "").replace("/", "").replace("-", "").equals(c.getCnpjCpf())) {
                     c.setTipo(pdf.getTipo());
-                    c.setLojaRisco(StringUtils.chop( pdf.getLojaRisco(pdf.getCodigo()) ));
+                    c.setLojaRisco(StringUtils.chop(pdf.getLojaRisco(pdf.getCodigo())));
                     String aux = StringUtils.chop(pdf.getCodigo());
                     c.setCodigo((StringUtils.chop(aux)).replace(".", ""));
-                    //System.out.println( c.getEndereco().getMunicipio() );
                 }
             }
         }
-        
-        
+
         matchNomeFantasia(clientes, clientesPlanilha);
 
-        
+        GerarPlanilha gerarPlanilha = new GerarPlanilha();
+
+        Set set = new HashSet<>(municipios);
+        municipios.clear();
+        municipios.addAll(set);
+
+        gerarPlanilha.gerarPlanilha(clientes, municipios);
     }
 
     public static void matchNomeFantasia(List<Cliente> clientesAPI, List<ClientePlanilha> clientesPlanilha) {
@@ -68,17 +79,20 @@ public class GerarBaseDados {
         for (Cliente api : clientesAPI) {
             for (ClientePlanilha planilha : clientesPlanilha) {
                 if (api.getRazaoSocial().contains(planilha.getNomeFantasia()) || planilha.getNomeFantasia().contains(api.getRazaoSocial())) {
-                    System.out.println("Retornado pela API: " + api.getRazaoSocial() + " e Retirado da planilha: " + planilha.getNomeFantasia());
                     if (api.getNomeFantasia() == null || api.getNomeFantasia().length() == 0) {
                         api.setNomeFantasia(planilha.getNomeFantasia());
                     }
-                    api.setContato(planilha.getContato());
-                    api.setTelefone(planilha.getTelefones());
+                    if (planilha.getTelefones() != null) {
+                        String str1 = planilha.getTelefones().trim().replace(" ", "X");
+                        String[] split = str1.split("XX");
+                        String aux = split[1].replace("X", " ");
+                        api.setTelefone(split[0]);
+                        api.setContato(aux);
+                    }
                     count++;
                 }
             }
         }
-
 
     }
 }

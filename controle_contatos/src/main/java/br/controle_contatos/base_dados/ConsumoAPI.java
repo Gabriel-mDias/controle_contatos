@@ -58,7 +58,7 @@ public class ConsumoAPI {
         cliente.getEndereco().setBairro(obj.getBairro());
         cliente.getEndereco().setCep(obj.getCep());
         cliente.getEndereco().setComplemento(obj.getComplemento());
-        cliente.getEndereco().setLogradouro(obj.getLogradouro());
+        cliente.getEndereco().setLogradouro( obj.getDescricao_tipo_logradouro() + " " + obj.getLogradouro());
         cliente.getEndereco().setMunicipio(obj.getMunicipio());
         //if (!obj.getNumero().isEmpty() && obj.getNumero() != null) {
         //    cliente.getEndereco().setNumero(Integer.valueOf(obj.getNumero()));
