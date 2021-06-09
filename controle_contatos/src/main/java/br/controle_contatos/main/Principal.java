@@ -5,8 +5,11 @@
  */
 package br.controle_contatos.main;
 
-import br.controle_contatos.dao.ContatoDAO;
-import br.controle_contatos.models.Contato;
+import br.controle_contatos.business.ClienteBusiness;
+import br.controle_contatos.models.Cliente;
+import br.controle_contatos.views.TelaPrincipalPresenter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,16 +18,6 @@ import br.controle_contatos.models.Contato;
 public class Principal {
     
     public static void main(String args[]){
-        
-        try{
-            System.out.println("Resultado da consulta: ");
-            
-            for(Contato elemento : new ContatoDAO().getByParametros(null)){
-                System.out.println(elemento.toString());
-            }
-            
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        new TelaPrincipalPresenter();
     }
 }
