@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,11 +27,11 @@ public class ListClientePresenter implements IPresenter{
     private JDesktopPane containerPai;
     private ClienteBusiness clienteBusiness;
     private Cliente filtro;
-    private List<Cliente> buscados;
+    private List<Cliente> listClientes;
     
     public ListClientePresenter(JDesktopPane containerPai){
         filtro = new Cliente();
-        buscados = new ArrayList<>();
+        listClientes = new ArrayList<>();
         clienteBusiness = new ClienteBusiness();
         
         try{
@@ -56,6 +57,20 @@ public class ListClientePresenter implements IPresenter{
             @Override
             public void actionPerformed(ActionEvent e) {
                 buscarContatos();
+            }
+        });
+        
+        this.view.getBtnExcluir().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                excluir();
+            }
+        });
+        
+        this.view.getBtnExibir().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibir();
             }
         });
     }
@@ -88,8 +103,8 @@ public class ListClientePresenter implements IPresenter{
                     break;
             }
 
-            this.buscados.clear();
-            this.buscados.addAll(this.clienteBusiness.getByParametros(filtro));
+            this.listClientes.clear();
+            this.listClientes.addAll(this.clienteBusiness.getByParametros(filtro));
             this.preencheTabela();
             
         }catch(Exception e){
@@ -101,7 +116,7 @@ public class ListClientePresenter implements IPresenter{
     private void preencheTabela(){
         var dadosTabela = new DefaultTableModel(new Object[]{"ID", "CNPJ ou CPF", "Nome Fantasia", "Razão Social"}, 0);
         
-        for(Cliente elemento : buscados){
+        for(Cliente elemento : listClientes){
             dadosTabela.addRow( new Object[]{
                 elemento.getId(),
                 elemento.getCnpjCpf(),
@@ -111,5 +126,40 @@ public class ListClientePresenter implements IPresenter{
         }
         
         this.view.getTblClientes().setModel(dadosTabela);
+    }
+    
+    private void excluir(){
+        try{
+            var posicaoSelecionada = this.view.getTblClientes().getSelectedRow();
+        
+            if(posicaoSelecionada < 0 ){
+                JOptionPane.showMessageDialog(view, "Cliente não selecionado", "Excluir Cliente", JOptionPane.ERROR_MESSAGE);
+            }else{
+                var idCliente = this.listClientes.get(posicaoSelecionada);
+                this.clienteBusiness.excluir(idCliente.getId());
+                JOptionPane.showConfirmDialog(view, "Cliente excluído!", "Excluir Cliente", JOptionPane.DEFAULT_OPTION);
+                this.listClientes.remove(idCliente);
+                preencheTabela();
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(view, "Error ao excluir o cliente, consultar os desenvolvedores", "Excluir Cliente", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+    
+    private void exibir(){
+        try{
+            var posicaoSelecionada = this.view.getTblClientes().getSelectedRow();
+        
+            if(posicaoSelecionada < 0 ){
+                JOptionPane.showMessageDialog(view, "Cliente não selecionado", "Exibir Cliente", JOptionPane.ERROR_MESSAGE);
+            }else{
+                var cliente = this.listClientes.get(posicaoSelecionada);
+                new VisualizarCliente(containerPai, cliente);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(view, "Error ao exibir o cliente, consultar os desenvolvedores", "Exibir Cliente", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
     }
 }

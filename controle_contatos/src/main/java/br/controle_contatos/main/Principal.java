@@ -5,11 +5,7 @@
  */
 package br.controle_contatos.main;
 
-import br.controle_contatos.business.ClienteBusiness;
-import br.controle_contatos.models.Cliente;
 import br.controle_contatos.views.TelaPrincipalPresenter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
