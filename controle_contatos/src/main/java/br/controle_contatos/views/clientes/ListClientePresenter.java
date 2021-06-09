@@ -66,6 +66,13 @@ public class ListClientePresenter implements IPresenter{
                 excluir();
             }
         });
+        
+        this.view.getBtnExibir().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exibir();
+            }
+        });
     }
 
     @Override
@@ -136,6 +143,22 @@ public class ListClientePresenter implements IPresenter{
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(view, "Error ao excluir o cliente, consultar os desenvolvedores", "Excluir Cliente", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+    
+    private void exibir(){
+        try{
+            var posicaoSelecionada = this.view.getTblClientes().getSelectedRow();
+        
+            if(posicaoSelecionada < 0 ){
+                JOptionPane.showMessageDialog(view, "Cliente não selecionado", "Exibir Cliente", JOptionPane.ERROR_MESSAGE);
+            }else{
+                var cliente = this.listClientes.get(posicaoSelecionada);
+                new VisualizarCliente(containerPai, cliente);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(view, "Error ao exibir o cliente, consultar os desenvolvedores", "Exibir Cliente", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }

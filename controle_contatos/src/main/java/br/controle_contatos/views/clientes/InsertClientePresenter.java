@@ -7,12 +7,11 @@ package br.controle_contatos.views.clientes;
 
 import br.controle_contatos.business.ClienteBusiness;
 import br.controle_contatos.models.Cliente;
+import br.controle_contatos.models.Endereco;
 import br.controle_contatos.views.interfaces.IPresenter;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -60,13 +59,24 @@ public class InsertClientePresenter implements IPresenter{
     }
     
     private void insertCliente(){
-        Cliente novoCliente = new Cliente();
-        
-        novoCliente.setNomeFantasia(this.view.getTxtNomeFantasia().getText());
-        novoCliente.setRazaoSocial(this.view.getTxtRazaoSocial().getText());
-        novoCliente.setCnpjCpf(this.view.getTxtCnpjCpf().getText());
-        
         try {
+            Cliente novoCliente = new Cliente();
+            Endereco endereco = new Endereco();
+
+            novoCliente.setNomeFantasia(this.view.getTxtNomeFantasia().getText());
+            novoCliente.setRazaoSocial(this.view.getTxtRazaoSocial().getText());
+            novoCliente.setCnpjCpf(this.view.getTxtCnpjCpf().getText());
+
+            endereco.setBairro(this.view.getTxtBairro().getText());
+            endereco.setCep(this.view.getTxtCep().getText());
+            endereco.setMunicipio(this.view.getTxtMunicipio().getText());
+            endereco.setComplemento(this.view.getTxtComplemento().getText());
+            endereco.setUf(String.valueOf(this.view.getCbUf().getSelectedItem()));
+            endereco.setNumero(Integer.valueOf(this.view.getTxtNumero().getText()));
+            endereco.setLogradouro(this.view.getTxtLogradouro().getText());
+
+            novoCliente.setEndereco(endereco);
+        
             this.clienteBusiness.insert(novoCliente);
             JOptionPane.showConfirmDialog(view, "Cliente inserido!", "Inserir Cliente", JOptionPane.DEFAULT_OPTION);
         } catch (Exception ex) {
