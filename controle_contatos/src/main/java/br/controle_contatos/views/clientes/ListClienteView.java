@@ -62,10 +62,24 @@ public class ListClienteView extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "CNPJ ou  CPF", "Nome Fantasia", "Razão Social"
+                "ID", "CNPJ ou  CPF", "Nome Fantasia", "Razão Social"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblClientes);
+        if (tblClientes.getColumnModel().getColumnCount() > 0) {
+            tblClientes.getColumnModel().getColumn(0).setResizable(false);
+            tblClientes.getColumnModel().getColumn(1).setResizable(false);
+            tblClientes.getColumnModel().getColumn(2).setResizable(false);
+            tblClientes.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         btnExibir.setText("Exibir");
 

@@ -18,18 +18,6 @@ import java.util.logging.Logger;
 public class Principal {
     
     public static void main(String args[]){
-        try {
-            
-            var c = new Cliente();
-            c.setCnpjCpf("123");
-            
-            new TelaPrincipalPresenter();
-            new ClienteBusiness().insert(c);
-            c.setRazaoSocial("Sem");
-            new ClienteBusiness().insert(c);
-            new ClienteBusiness().insert(new Cliente());
-        } catch (Exception ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new TelaPrincipalPresenter();
     }
 }

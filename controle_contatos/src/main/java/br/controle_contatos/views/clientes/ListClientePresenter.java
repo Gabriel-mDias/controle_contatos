@@ -70,6 +70,7 @@ public class ListClientePresenter implements IPresenter{
     
     public void buscarContatos(){
         try{
+            this.filtro = new Cliente();
             String valorBuscado = this.view.getTxtFiltro().getText();
         
             switch ( this.view.getCbBusca().getSelectedIndex() ){
@@ -98,10 +99,11 @@ public class ListClientePresenter implements IPresenter{
     }
     
     private void preencheTabela(){
-        var dadosTabela = new DefaultTableModel(new Object[]{"CNPJ ou CPF", "Nome Fantasia", "Razão Social"}, 0);
+        var dadosTabela = new DefaultTableModel(new Object[]{"ID", "CNPJ ou CPF", "Nome Fantasia", "Razão Social"}, 0);
         
         for(Cliente elemento : buscados){
             dadosTabela.addRow( new Object[]{
+                elemento.getId(),
                 elemento.getCnpjCpf(),
                 elemento.getNomeFantasia(),
                 elemento.getRazaoSocial()

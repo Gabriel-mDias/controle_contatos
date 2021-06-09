@@ -5,6 +5,7 @@
  */
 package br.controle_contatos.views.clientes;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -302,6 +303,8 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTelefone4;
     // End of variables declaration//GEN-END:variables
 
+    
+    
     public JComboBox<String> getCbUf() {
         return cbUf;
     }
@@ -556,6 +559,14 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
     public void setTxtTelefone4(JTextField txtTelefone4) {
         this.txtTelefone4 = txtTelefone4;
+    }
+
+    public JButton getBtnConfirmar() {
+        return btnConfirmar;
+    }
+
+    public void setBtnConfirmar(JButton btnConfirmar) {
+        this.btnConfirmar = btnConfirmar;
     }
     
 }
