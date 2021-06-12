@@ -1,10 +1,14 @@
 package br.controle_contatos.dao;
 
 import br.controle_contatos.dao.connection.SqliteManager;
+import br.controle_contatos.models.Cliente;
 import br.controle_contatos.models.Endereco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -33,13 +37,13 @@ public class EnderecoDAO {
             this.manager.abreTransacao();
 
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setString(1, endereco.getLogradouro());
-            ps.setInt(2, endereco.getNumero());
-            ps.setString(3, endereco.getComplemento());
-            ps.setString(4, endereco.getBairro());
-            ps.setString(5, endereco.getMunicipio());
-            ps.setString(6, endereco.getCep());
-            ps.setString(7, endereco.getUf());
+            ps.setString(1, endereco.getLogradouro() != null ? endereco.getLogradouro() : "");
+            ps.setInt(2, endereco.getNumero() != null ? endereco.getNumero() : 0);
+            ps.setString(3, endereco.getComplemento() != null ? endereco.getComplemento() : "");
+            ps.setString(4, endereco.getBairro() != null ? endereco.getBairro() : "");
+            ps.setString(5, endereco.getMunicipio() != null ? endereco.getMunicipio() : "");
+            ps.setString(6, endereco.getCep() != null ? endereco.getCep() : "");
+            ps.setString(7, endereco.getUf() != null ? endereco.getUf() : "" );
 
             ps.executeUpdate();
 
@@ -131,6 +135,34 @@ public class EnderecoDAO {
             this.manager.desfazTransacao();
             this.manager.close();
             throw new Exception("Erro ao deletar");
+        }
+    }
+    
+    public List<String> getAllMunicipios() throws SQLException, Exception {
+
+        try {
+            String query = "SELECT DISTINCT municipio FROM ENDERECO";
+
+            Connection conn = this.manager.conectar();
+            this.manager.abreTransacao();
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            
+            ResultSet rs = ps.executeQuery();
+            List<String> municipios = new ArrayList<>();
+
+            while (rs.next()) {
+                municipios.add(rs.getString("municipio"));
+            }
+            
+            this.manager.fechaTransacao();
+            this.manager.close();
+            
+            return municipios;
+        } catch (Exception ex) {
+            this.manager.desfazTransacao();
+            this.manager.close();
+            throw new Exception("Erro ao Buscar");
         }
     }
 

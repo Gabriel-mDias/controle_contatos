@@ -25,7 +25,7 @@ public class ClienteDAO {
     public void update(Cliente cliente) throws SQLException, Exception {
 
         try {
-            String query = "UPDATE Cliente SET razao_social=?, telefone=?, cnpj_cpf=?, nome_fantasia=? WHERE id = ?";
+            String query = "UPDATE Cliente SET razao_social=?, telefones=?, cnpj_cpf=?, nome_fantasia=? WHERE id = ?";
 
             Connection conn = this.manager.conectar();
             this.manager.abreTransacao();
@@ -50,7 +50,7 @@ public class ClienteDAO {
 
     public void insert(Cliente cliente) throws Exception {
         try {
-            String query = "INSERT INTO Cliente(razao_social, telefone, cnpj_cpf, nome_fantasia, "
+            String query = "INSERT INTO Cliente(razao_social, telefones, cnpj_cpf, nome_fantasia, "
                     + cliente.getEndereco() != null ? ", id_endereco ) " : " ) "
                     + "VALUES (?,?,?,?,?,?,?"
                     + cliente.getEndereco() != null ? ",?" : ""
@@ -81,7 +81,7 @@ public class ClienteDAO {
 
     public List<Cliente> getByParametros(Cliente cliente) throws Exception {
         try {
-            StringBuilder query = new StringBuilder("SELECT c.id, c.razao_social, c.nome_fantasia, c.telefone, c.cnpj_cpf, ");
+            StringBuilder query = new StringBuilder("SELECT c.id, c.razao_social, c.nome_fantasia, c.telefones, c.cnpj_cpf, ");
             query.append(" e.id, e.logradouro, e.numero, e.complemento, e.bairro, e.municipio, e.cep, e.uf ");
             query.append(" FROM Cliente c LEFT JOIN Endereco e ON c.id_endereco = e.id ");
             query.append(" WHERE 1=1 ");
@@ -102,7 +102,7 @@ public class ClienteDAO {
                 }
 
                 if (cliente.getTelefone() != null && cliente.getTelefone().length() > 0) {
-                    query.append(" AND c.telefone LIKE ? ");
+                    query.append(" AND c.telefones LIKE ? ");
                 }
 
                 if (cliente.getCnpjCpf() != null && cliente.getCnpjCpf().length() > 0) {
@@ -111,7 +111,7 @@ public class ClienteDAO {
 
                 if (cliente.getEndereco() != null) {
 
-                    if (cliente.getEndereco().getLogradouro().length() > 0) {
+                    if (cliente.getEndereco().getLogradouro() != null && cliente.getEndereco().getLogradouro().length() > 0) {
                         query.append(" AND UPPER(e.logradouro) LIKE ? ");
                     }
 
@@ -171,7 +171,7 @@ public class ClienteDAO {
 
                 if (cliente.getEndereco() != null) {
 
-                    if (cliente.getEndereco().getLogradouro().length() > 0) {
+                    if (cliente.getEndereco().getLogradouro() != null && cliente.getEndereco().getLogradouro().length() > 0) {
                         ps.setString(posicao++, "%" + cliente.getEndereco().getLogradouro().toUpperCase() + "%");
                     }
 
@@ -211,7 +211,7 @@ public class ClienteDAO {
                 elemento.setId(rs.getLong("id"));
                 elemento.setRazaoSocial(rs.getString("razao_social"));
                 elemento.setNomeFantasia(rs.getString("nome_fantasia"));
-                elemento.setTelefone(rs.getString("telefone"));
+                elemento.setTelefone(rs.getString("telefones"));
                 elemento.setCnpjCpf(rs.getString("cnpj_cpf"));
 
                 enderecoElemento.setLogradouro(rs.getString("logradouro"));

@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.controle_contatos.base_dados;
+package br.controle_contatos.main;
 
-import br.controle_contatos.base_dados.ConsumoAPI;
-import br.controle_contatos.models.Cliente;
 import br.controle_contatos.views.TelaPrincipalPresenter;
 import java.io.IOException;
 
@@ -17,9 +15,6 @@ import java.io.IOException;
 public class Principal {
     
     public static void main(String args[]) throws IOException{
-       //ConsumoAPI api = new ConsumoAPI();
-       //Cliente c = api.getClienteByCNPJ("36325447000188");
-      // System.out.println(c.toString());
-    // new TelaPrincipalPresenter();
+       new TelaPrincipalPresenter();
     }
 }

@@ -230,5 +230,13 @@ public class ListClienteView extends javax.swing.JInternalFrame {
         this.txtFiltro = txtFiltro;
     }
 
+    public JButton getBtnGerarPlanilha() {
+        return btnGerarPlanilha;
+    }
+
+    public void setBtnGerarPlanilha(JButton btnGerarPlanilha) {
+        this.btnGerarPlanilha = btnGerarPlanilha;
+    }
+
     
 }

@@ -7,27 +7,28 @@ import br.controle_contatos.models.Cliente;
 import br.controle_contatos.models.ClientePDF;
 import br.controle_contatos.models.ClientePlanilha;
 import java.io.IOException;
-import static java.lang.reflect.Array.set;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.lang3.StringUtils;
 
 public class GerarBaseDados {
 
-    private ClienteBusiness clienteBusiness = new ClienteBusiness();
+    private static ClienteBusiness clienteBusiness = new ClienteBusiness();
 
     public static void main(String[] args) throws IOException, DecoderException {
 
         LerTabelaPdf lerPDF = new LerTabelaPdf();
-        //ArrayList<ClientePDF> clientesPDF = lerPDF.lerDados("/home/gabriel/Downloads/Clientes Sergio[565] (1).pdf");           //biel
-        ArrayList<ClientePDF> clientesPDF = lerPDF.lerDados("C:\\Users\\NOTE_190\\Downloads\\Clientes Sergio[565] (1).pdf");     //said
+        ArrayList<ClientePDF> clientesPDF = lerPDF.lerDados("/home/gabriel/Downloads/Clientes Sergio[565] (1).pdf");           //biel
+        //ArrayList<ClientePDF> clientesPDF = lerPDF.lerDados("C:\\Users\\NOTE_190\\Downloads\\Clientes Sergio[565] (1).pdf");     //said
 
         LerTabelaPlanilha lerPDFPlanilha = new LerTabelaPlanilha();
-        //ArrayList<ClientePlanilha> clientesPlanilha = lerPDFPlanilha.lerDados("/home/gabriel/Downloads/PROJETO DE ATUALIZAÇÃO[566] (3).pdf");         //biel
-        ArrayList<ClientePlanilha> clientesPlanilha = lerPDFPlanilha.lerDados("C:\\Users\\NOTE_190\\Downloads\\PROJETO DE ATUALIZAÇÃO[566] (3).pdf");   //said    
+        ArrayList<ClientePlanilha> clientesPlanilha = lerPDFPlanilha.lerDados("/home/gabriel/Downloads/PROJETO DE ATUALIZAÇÃO[566] (3).pdf");         //biel
+        //ArrayList<ClientePlanilha> clientesPlanilha = lerPDFPlanilha.lerDados("C:\\Users\\NOTE_190\\Downloads\\PROJETO DE ATUALIZAÇÃO[566] (3).pdf");   //said    
 
         String[] cnpjClientes = new String[clientesPDF.size()];
         for (int i = 0; i < cnpjClientes.length; i++) {
@@ -74,25 +75,30 @@ public class GerarBaseDados {
     }
 
     public static void matchNomeFantasia(List<Cliente> clientesAPI, List<ClientePlanilha> clientesPlanilha) {
-
-        int count = 0;
-        for (Cliente api : clientesAPI) {
-            for (ClientePlanilha planilha : clientesPlanilha) {
-                if (api.getRazaoSocial().contains(planilha.getNomeFantasia()) || planilha.getNomeFantasia().contains(api.getRazaoSocial())) {
-                    if (api.getNomeFantasia() == null || api.getNomeFantasia().length() == 0) {
-                        api.setNomeFantasia(planilha.getNomeFantasia());
+        try {
+            int count = 0;
+            for (Cliente api : clientesAPI) {
+                for (ClientePlanilha planilha : clientesPlanilha) {
+                    if (api.getRazaoSocial().contains(planilha.getNomeFantasia()) || planilha.getNomeFantasia().contains(api.getRazaoSocial())) {
+                        if (api.getNomeFantasia() == null || api.getNomeFantasia().length() == 0) {
+                            api.setNomeFantasia(planilha.getNomeFantasia());
+                        }
+                        if (planilha.getTelefones() != null) {
+                            String str1 = planilha.getTelefones().trim().replace(" ", "X");
+                            String[] split = str1.split("XX");
+                            String aux = split[1].replace("X", " ");
+                            api.setTelefone(split[0]);
+                            api.setContato(aux);
+                        }
+                        count++;
                     }
-                    if (planilha.getTelefones() != null) {
-                        String str1 = planilha.getTelefones().trim().replace(" ", "X");
-                        String[] split = str1.split("XX");
-                        String aux = split[1].replace("X", " ");
-                        api.setTelefone(split[0]);
-                        api.setContato(aux);
-                    }
-                    count++;
                 }
-            }
-        }
 
+                clienteBusiness.insert(api);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(GerarBaseDados.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
