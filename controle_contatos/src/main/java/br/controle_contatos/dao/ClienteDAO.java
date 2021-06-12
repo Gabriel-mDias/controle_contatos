@@ -83,12 +83,13 @@ public class ClienteDAO {
         try {
             StringBuilder query = new StringBuilder("SELECT c.id, c.razao_social, c.nome_fantasia, c.telefone, c.cnpj_cpf, ");
             query.append(" e.id, e.logradouro, e.numero, e.complemento, e.bairro, e.municipio, e.cep, e.uf ");
-            query.append(" FROM Cliente c, Endereco e ");
-            query.append(" WHERE c.id_endereco = e.id ");
+            query.append(" FROM Cliente c LEFT JOIN Endereco e ON c.id_endereco = e.id ");
+            query.append(" WHERE 1=1 ");
+            
+            if(cliente != null){
+                
+                if(cliente.getId() != null && cliente.getId().compareTo(0L) > 0 ){
 
-            if (cliente != null) {
-
-                if (cliente.getId() != null && cliente.getId().compareTo(0L) > 0) {
                     query.append(" AND c.id = ? ");
                 }
 
@@ -237,5 +238,26 @@ public class ClienteDAO {
             throw new Exception("Erro ao buscar");
         }
     }
+  
+    public void delete(Long id) throws Exception {
+        try {
+            String SQL = "DELETE FROM Cliente WHERE id = ?";
+
+            Connection conn = this.manager.conectar();
+            this.manager.abreTransacao();
+
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ps.setLong(1, id);
+            ps.executeUpdate();
+
+            this.manager.fechaTransacao();
+            this.manager.close();
+        } catch (Exception ex) {
+            this.manager.desfazTransacao();
+            this.manager.close();
+            throw new Exception("Erro ao excluir");
+        }
+    }
+
 
 }

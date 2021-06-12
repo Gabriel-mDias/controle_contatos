@@ -113,4 +113,25 @@ public class EnderecoDAO {
 
         return maxId;
     }
+    
+    public void delete(Long id) throws Exception {
+        try {
+            String SQL = "DELETE FROM Endereco WHERE id = ?";
+
+            Connection conn = this.manager.conectar();
+            this.manager.abreTransacao();
+
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ps.setLong(1, id);
+            ps.executeUpdate();
+
+            this.manager.fechaTransacao();
+            this.manager.close();
+        } catch (Exception ex) {
+            this.manager.desfazTransacao();
+            this.manager.close();
+            throw new Exception("Erro ao deletar");
+        }
+    }
+
 }

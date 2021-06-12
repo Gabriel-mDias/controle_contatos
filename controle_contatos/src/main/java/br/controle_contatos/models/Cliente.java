@@ -82,7 +82,7 @@ public class Cliente {
     }
 
     public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
+        this.nomeFantasia = nomeFantasia;  
     }
 
     public String getTelefone() {

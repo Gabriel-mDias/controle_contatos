@@ -59,4 +59,24 @@ public class ClienteBusiness {
             throw new Exception("Cliente passado para a busca é vazio ou inválido");
         }
     }
+    
+    public void excluir(Long id) throws Exception {
+        if(id != null){
+            Cliente clienteId = new Cliente();
+            clienteId.setId(id);
+            var listaExclusao = this.clienteDAO.getByParametros(clienteId);
+            
+            if(listaExclusao != null && listaExclusao.size() == 1){
+                var clienteExcluido = listaExclusao.get(0);
+                
+                if(clienteExcluido.getEndereco() != null && clienteExcluido.getEndereco().getId() != null){
+                    this.enderecoDAO.delete(clienteExcluido.getEndereco().getId());
+                }
+                
+                this.clienteDAO.delete(id);
+            }
+        }else{
+            throw new Exception("ID passado para exclusão é inválido");
+        }
+    }
 }

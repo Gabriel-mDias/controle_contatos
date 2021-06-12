@@ -37,7 +37,6 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         clienteMenu = new javax.swing.JMenu();
         itemListarCliente = new javax.swing.JMenuItem();
         itemInserirCliente = new javax.swing.JMenuItem();
-        exitOption = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Controle de Clientes");
@@ -51,9 +50,6 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         clienteMenu.add(itemInserirCliente);
 
         menuBar.add(clienteMenu);
-
-        exitOption.setText("Sair");
-        menuBar.add(exitOption);
 
         setJMenuBar(menuBar);
 
@@ -75,7 +71,6 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu clienteMenu;
-    private javax.swing.JMenu exitOption;
     private javax.swing.JMenuItem itemInserirCliente;
     private javax.swing.JMenuItem itemListarCliente;
     private javax.swing.JDesktopPane mainContainer;
@@ -88,14 +83,6 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
     public void setClienteMenu(JMenu clienteMenu) {
         this.clienteMenu = clienteMenu;
-    }
-
-    public JMenu getExitOption() {
-        return exitOption;
-    }
-
-    public void setExitOption(JMenu exitOption) {
-        this.exitOption = exitOption;
     }
 
     public JMenuItem getItemInserirCliente() {

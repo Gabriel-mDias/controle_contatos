@@ -19,7 +19,7 @@ public class Endereco {
     private String municipio;
     private String cep;
     private String uf;
-
+ 
     public Endereco(Long id, String logradouro, Integer numero, String complemento, String bairro, String municipio, String cep, String uf) {
         this.id = id;
         this.logradouro = logradouro;
@@ -30,6 +30,9 @@ public class Endereco {
         this.cep = cep;
         this.uf = uf;
     }
+     public Endereco( Long id ){
+         this.id = id;
+     }
 
     public Endereco() {
     }

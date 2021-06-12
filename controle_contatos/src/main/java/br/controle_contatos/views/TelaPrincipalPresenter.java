@@ -5,7 +5,7 @@
  */
 package br.controle_contatos.views;
 
-import br.controle_contatos.views.clientes.ClientePresenter;
+import br.controle_contatos.views.clientes.InsertClientePresenter;
 import br.controle_contatos.views.clientes.ListClientePresenter;
 import br.controle_contatos.views.interfaces.IPresenter;
 import java.awt.event.ActionEvent;
@@ -36,7 +36,7 @@ public class TelaPrincipalPresenter implements IPresenter{
         this.view.getItemInserirCliente().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ClientePresenter(view.getMainContainer());
+                new InsertClientePresenter(view.getMainContainer());
             }
         });
         
@@ -46,11 +46,9 @@ public class TelaPrincipalPresenter implements IPresenter{
                 new ListClientePresenter(view.getMainContainer());
             }
         });
-        
     }
 
     @Override
     public void centralizarTela() throws Exception {
     }
-    
 }
