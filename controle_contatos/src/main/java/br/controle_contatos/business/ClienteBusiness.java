@@ -15,34 +15,47 @@ import java.util.List;
  * @author gabriel
  */
 public class ClienteBusiness {
-    
+
     private ClienteDAO clienteDAO;
     private EnderecoDAO enderecoDAO;
-    
-    public ClienteBusiness(){
+
+    public ClienteBusiness() {
         this.clienteDAO = new ClienteDAO();
         this.enderecoDAO = new EnderecoDAO();
     }
-    
-    public void insert(Cliente cliente) throws Exception{
-        if(cliente != null){
-            
-            if(cliente.getEndereco() != null){
+
+    public void insert(Cliente cliente) throws Exception {
+        if (cliente != null) {
+
+            if (cliente.getEndereco() != null) {
                 Long idEndereco = this.enderecoDAO.insert(cliente.getEndereco());
                 cliente.getEndereco().setId(idEndereco);
             }
-            
+
             this.clienteDAO.insert(cliente);
-            
-        }else{
+
+        } else {
             throw new Exception("Cliente passado para a inserção é vazio ou inválido");
         }
     }
-    
-    public List<Cliente> getByParametros(Cliente clienteConsultado) throws Exception{
-        if(clienteConsultado != null){
+
+    public void update(Cliente cliente) throws Exception {
+        if (cliente != null) {
+            this.clienteDAO.update(cliente);
+            if (cliente.getEndereco() != null) {
+                this.enderecoDAO.update(cliente.getEndereco());
+            } else {
+                throw new Exception("Endereço passado para update é nulo");
+            }
+        } else {
+            throw new Exception("Cliente passado para update é nulo");
+        }
+    }
+
+    public List<Cliente> getByParametros(Cliente clienteConsultado) throws Exception {
+        if (clienteConsultado != null) {
             return this.clienteDAO.getByParametros(clienteConsultado);
-        }else{
+        } else {
             throw new Exception("Cliente passado para a busca é vazio ou inválido");
         }
     }

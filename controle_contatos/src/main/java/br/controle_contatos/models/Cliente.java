@@ -10,43 +10,56 @@ package br.controle_contatos.models;
  * @author gabriel
  */
 public class Cliente {
-    
+
     private Long id;
     private String razaoSocial;
     private String nomeFantasia;
-    private String telefone1;
-    private String telefone2;
-    private String telefone3;
-    private String telefone4;
+    private String telefone;
     private String cnpjCpf;
+    private String contato;
     private Endereco endereco;
-
-    public Cliente(Long id, String razaoSocial, String nomeFantasia, String telefone1, String telefone2, String telefone3, String telefone4, String cnpjCpf, Endereco endereco) {
+    private String codigo;
+    private String tipo;
+    private String lojaRisco;
+    
+    public Cliente(){
+        this.endereco = new Endereco();
+    }
+    public Cliente(Long id, String razaoSocial, String nomeFantasia, String telefone, String cnpjCpf, String contato, Endereco endereco) {
         this.id = id;
+        this.telefone = telefone;
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
-        this.telefone1 = telefone1;
-        this.telefone2 = telefone2;
-        this.telefone3 = telefone3;
-        this.telefone4 = telefone4;
         this.cnpjCpf = cnpjCpf;
+        this.contato = contato;
         this.endereco = endereco;
     }
 
-    public Cliente(Long id, String razaoSocial, String nomeFantasia, String telefone1, String telefone2, String telefone3, String telefone4, String cnpjCpf) {
+    public Cliente(Long id, String razaoSocial, String telefone, String nomeFantasia, String cnpjCpf, String contato) {
         this.id = id;
         this.razaoSocial = razaoSocial;
         this.nomeFantasia = nomeFantasia;
-        this.telefone1 = telefone1;
-        this.telefone2 = telefone2;
-        this.telefone3 = telefone3;
-        this.telefone4 = telefone4;
+        this.telefone = telefone;
         this.cnpjCpf = cnpjCpf;
+        this.contato = contato;
     }
 
-    public Cliente() {
+    public String toString() {
+        return "\n---------- Dados Cliente ----------"
+                + "\nRazão Social: " + this.getRazaoSocial()
+                + "\nNome Fantasia: " + this.getNomeFantasia()
+                + "\nTelefone: " + this.getTelefone()
+                + "\nCNPJ: " + this.getCnpjCpf()
+                + "\nContato: " + this.getContato()
+                + "\n---------- Dados de Endereço ------------"
+                + "\nLogradouro: " + this.getEndereco().getLogradouro()
+                + "\nNumero: " + this.getEndereco().getNumero()
+                + "\nComplemento: " + this.getEndereco().getComplemento()
+                + "\nBairro: " + this.getEndereco().getBairro()
+                + "\nMunicípio: " + this.getEndereco().getMunicipio()
+                + "\nCep: " + this.getEndereco().getCep()
+                + "\nUF: " + this.getEndereco().getUf();
     }
-    
 
     public Long getId() {
         return id;
@@ -69,39 +82,15 @@ public class Cliente {
     }
 
     public void setNomeFantasia(String nomeFantasia) {
-        this.nomeFantasia = nomeFantasia;
+        this.nomeFantasia = nomeFantasia;  
     }
 
-    public String getTelefone1() {
-        return telefone1;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setTelefone1(String telefone1) {
-        this.telefone1 = telefone1;
-    }
-
-    public String getTelefone2() {
-        return telefone2;
-    }
-
-    public void setTelefone2(String telefone2) {
-        this.telefone2 = telefone2;
-    }
-
-    public String getTelefone3() {
-        return telefone3;
-    }
-
-    public void setTelefone3(String telefone3) {
-        this.telefone3 = telefone3;
-    }
-
-    public String getTelefone4() {
-        return telefone4;
-    }
-
-    public void setTelefone4(String telefone4) {
-        this.telefone4 = telefone4;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getCnpjCpf() {
@@ -112,6 +101,14 @@ public class Cliente {
         this.cnpjCpf = cnpjCpf;
     }
 
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
+    }
+
     public Endereco getEndereco() {
         return endereco;
     }
@@ -119,5 +116,30 @@ public class Cliente {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-        
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getLojaRisco() {
+        return lojaRisco;
+    }
+
+    public void setLojaRisco(String lojaRisco) {
+        this.lojaRisco = lojaRisco;
+    }
+
+   
 }
