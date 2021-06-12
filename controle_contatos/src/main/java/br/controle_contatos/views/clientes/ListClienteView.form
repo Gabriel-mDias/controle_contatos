@@ -41,11 +41,12 @@
                           <Component id="jScrollPane1" min="-2" pref="715" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnBuscar" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="btnExcluir" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="btnEditar" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="btnExibir" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnBuscar" alignment="0" pref="130" max="32767" attributes="0"/>
+                          <Component id="btnExcluir" pref="130" max="32767" attributes="0"/>
+                          <Component id="btnEditar" alignment="0" pref="130" max="32767" attributes="0"/>
+                          <Component id="btnExibir" pref="130" max="32767" attributes="0"/>
+                          <Component id="btnGerarPlanilha" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -67,6 +68,8 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
+                      <Component id="btnGerarPlanilha" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnExibir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
@@ -75,7 +78,7 @@
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="278" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -178,6 +181,11 @@
     <Component class="javax.swing.JButton" name="btnExcluir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGerarPlanilha">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gerar Planilha"/>
       </Properties>
     </Component>
   </SubComponents>

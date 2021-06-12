@@ -58,18 +58,18 @@ public class ClienteView extends javax.swing.JInternalFrame {
         txtRazaoSocial = new javax.swing.JTextField();
         lblCnpjCpf = new javax.swing.JLabel();
         txtCnpjCpf = new javax.swing.JTextField();
-        lblTelefone2 = new javax.swing.JLabel();
-        txtTelefone2 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        lblTelefone = new javax.swing.JLabel();
+        txtTelefone = new javax.swing.JTextField();
+        lblNomeFantasia = new javax.swing.JLabel();
+        txtNomeFantasia = new javax.swing.JTextField();
+        lblContato = new javax.swing.JLabel();
+        txtContato = new javax.swing.JTextField();
+        lblCodigo = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        lblTipo = new javax.swing.JLabel();
+        txtTipo = new javax.swing.JTextField();
+        lblLojaRisco = new javax.swing.JLabel();
+        txtLojaRisco = new javax.swing.JTextField();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -186,41 +186,41 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
         lblCnpjCpf.setText("CNPJ ou CPF:");
 
-        lblTelefone2.setText("Telefone:");
+        lblTelefone.setText("Telefone:");
 
-        jLabel1.setText("Nome Fantasia:");
+        lblNomeFantasia.setText("Nome Fantasia:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNomeFantasia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNomeFantasiaActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Contato:");
+        lblContato.setText("Contato:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtContato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtContatoActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Código:");
+        lblCodigo.setText("Código:");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtCodigoActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Tipo:");
+        lblTipo.setText("Tipo:");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtTipoActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("Loja Risco:");
+        lblLojaRisco.setText("Loja Risco:");
 
         javax.swing.GroupLayout panelClienteLayout = new javax.swing.GroupLayout(panelCliente);
         panelCliente.setLayout(panelClienteLayout);
@@ -231,16 +231,16 @@ public class ClienteView extends javax.swing.JInternalFrame {
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelClienteLayout.createSequentialGroup()
                         .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblCodigo)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblRazaoSocial)
                             .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblNomeFantasia)
+                            .addComponent(txtNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelClienteLayout.createSequentialGroup()
                         .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelClienteLayout.createSequentialGroup()
@@ -249,18 +249,18 @@ public class ClienteView extends javax.swing.JInternalFrame {
                                     .addComponent(lblCnpjCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblLojaRisco)
+                                    .addComponent(txtLojaRisco, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48)
                         .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField4)
+                            .addComponent(txtContato)
+                            .addComponent(txtTipo)
                             .addGroup(panelClienteLayout.createSequentialGroup()
                                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
+                                    .addComponent(lblContato)
+                                    .addComponent(lblTipo))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(46, 46, Short.MAX_VALUE))
         );
@@ -272,40 +272,40 @@ public class ClienteView extends javax.swing.JInternalFrame {
                     .addGroup(panelClienteLayout.createSequentialGroup()
                         .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblRazaoSocial)
-                            .addComponent(jLabel1))
+                            .addComponent(lblNomeFantasia))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelClienteLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(lblCodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panelClienteLayout.createSequentialGroup()
-                            .addComponent(jLabel5)
+                            .addComponent(lblLojaRisco)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtLojaRisco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panelClienteLayout.createSequentialGroup()
                             .addComponent(lblCnpjCpf)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtCnpjCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelClienteLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(lblTipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClienteLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(lblContato)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClienteLayout.createSequentialGroup()
-                        .addComponent(lblTelefone2)
+                        .addComponent(lblTelefone)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtTelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32))
         );
 
@@ -339,63 +339,69 @@ public class ClienteView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txtTipoActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContatoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtContatoActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtNomeFantasiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeFantasiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtNomeFantasiaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JComboBox<String> cbUf;
     private javax.swing.JTabbedPane insertPane;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel lblBairro;
     private javax.swing.JLabel lblCEP;
     private javax.swing.JLabel lblCnpjCpf;
+    private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblComplemento;
+    private javax.swing.JLabel lblContato;
     private javax.swing.JLabel lblInformacoes;
     private javax.swing.JLabel lblLogradouro;
+    private javax.swing.JLabel lblLojaRisco;
     private javax.swing.JLabel lblMunicipio;
+    private javax.swing.JLabel lblNomeFantasia;
     private javax.swing.JLabel lblNumero;
     private javax.swing.JLabel lblRazaoSocial;
-    private javax.swing.JLabel lblTelefone2;
+    private javax.swing.JLabel lblTelefone;
+    private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblUf;
     private javax.swing.JPanel panelCliente;
     private javax.swing.JPanel panelEndereco;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCep;
     private javax.swing.JTextField txtCnpjCpf;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtComplemento;
+    private javax.swing.JTextField txtContato;
     private javax.swing.JTextField txtLogradouro;
+    private javax.swing.JTextField txtLojaRisco;
     private javax.swing.JTextField txtMunicipio;
+    private javax.swing.JTextField txtNomeFantasia;
     private javax.swing.JFormattedTextField txtNumero;
     private javax.swing.JTextField txtRazaoSocial;
-    private javax.swing.JTextField txtTelefone2;
+    private javax.swing.JTextField txtTelefone;
+    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 
-    
-    
+    public JButton getBtnConfirmar() {
+        return btnConfirmar;
+    }
+
+    public void setBtnConfirmar(JButton btnConfirmar) {
+        this.btnConfirmar = btnConfirmar;
+    }
+
     public JComboBox<String> getCbUf() {
         return cbUf;
     }
@@ -436,12 +442,28 @@ public class ClienteView extends javax.swing.JInternalFrame {
         this.lblCnpjCpf = lblCnpjCpf;
     }
 
+    public JLabel getLblCodigo() {
+        return lblCodigo;
+    }
+
+    public void setLblCodigo(JLabel lblCodigo) {
+        this.lblCodigo = lblCodigo;
+    }
+
     public JLabel getLblComplemento() {
         return lblComplemento;
     }
 
     public void setLblComplemento(JLabel lblComplemento) {
         this.lblComplemento = lblComplemento;
+    }
+
+    public JLabel getLblContato() {
+        return lblContato;
+    }
+
+    public void setLblContato(JLabel lblContato) {
+        this.lblContato = lblContato;
     }
 
     public JLabel getLblInformacoes() {
@@ -460,6 +482,14 @@ public class ClienteView extends javax.swing.JInternalFrame {
         this.lblLogradouro = lblLogradouro;
     }
 
+    public JLabel getLblLojaRisco() {
+        return lblLojaRisco;
+    }
+
+    public void setLblLojaRisco(JLabel lblLojaRisco) {
+        this.lblLojaRisco = lblLojaRisco;
+    }
+
     public JLabel getLblMunicipio() {
         return lblMunicipio;
     }
@@ -468,6 +498,13 @@ public class ClienteView extends javax.swing.JInternalFrame {
         this.lblMunicipio = lblMunicipio;
     }
 
+    public JLabel getLblNomeFantasia() {
+        return lblNomeFantasia;
+    }
+
+    public void setLblNomeFantasia(JLabel lblNomeFantasia) {
+        this.lblNomeFantasia = lblNomeFantasia;
+    }
 
     public JLabel getLblNumero() {
         return lblNumero;
@@ -485,14 +522,21 @@ public class ClienteView extends javax.swing.JInternalFrame {
         this.lblRazaoSocial = lblRazaoSocial;
     }
 
-    public JLabel getLblTelefone2() {
-        return lblTelefone2;
+    public JLabel getLblTelefone() {
+        return lblTelefone;
     }
 
-    public void setLblTelefone2(JLabel lblTelefone2) {
-        this.lblTelefone2 = lblTelefone2;
+    public void setLblTelefone(JLabel lblTelefone) {
+        this.lblTelefone = lblTelefone;
     }
 
+    public JLabel getLblTipo() {
+        return lblTipo;
+    }
+
+    public void setLblTipo(JLabel lblTipo) {
+        this.lblTipo = lblTipo;
+    }
 
     public JLabel getLblUf() {
         return lblUf;
@@ -542,12 +586,28 @@ public class ClienteView extends javax.swing.JInternalFrame {
         this.txtCnpjCpf = txtCnpjCpf;
     }
 
+    public JTextField getTxtCodigo() {
+        return txtCodigo;
+    }
+
+    public void setTxtCodigo(JTextField txtCodigo) {
+        this.txtCodigo = txtCodigo;
+    }
+
     public JTextField getTxtComplemento() {
         return txtComplemento;
     }
 
     public void setTxtComplemento(JTextField txtComplemento) {
         this.txtComplemento = txtComplemento;
+    }
+
+    public JTextField getTxtContato() {
+        return txtContato;
+    }
+
+    public void setTxtContato(JTextField txtContato) {
+        this.txtContato = txtContato;
     }
 
     public JTextField getTxtLogradouro() {
@@ -558,6 +618,14 @@ public class ClienteView extends javax.swing.JInternalFrame {
         this.txtLogradouro = txtLogradouro;
     }
 
+    public JTextField getTxtLojaRisco() {
+        return txtLojaRisco;
+    }
+
+    public void setTxtLojaRisco(JTextField txtLojaRisco) {
+        this.txtLojaRisco = txtLojaRisco;
+    }
+
     public JTextField getTxtMunicipio() {
         return txtMunicipio;
     }
@@ -565,6 +633,15 @@ public class ClienteView extends javax.swing.JInternalFrame {
     public void setTxtMunicipio(JTextField txtMunicipio) {
         this.txtMunicipio = txtMunicipio;
     }
+
+    public JTextField getTxtNomeFantasia() {
+        return txtNomeFantasia;
+    }
+
+    public void setTxtNomeFantasia(JTextField txtNomeFantasia) {
+        this.txtNomeFantasia = txtNomeFantasia;
+    }
+
     public JFormattedTextField getTxtNumero() {
         return txtNumero;
     }
@@ -581,19 +658,23 @@ public class ClienteView extends javax.swing.JInternalFrame {
         this.txtRazaoSocial = txtRazaoSocial;
     }
 
-    public JTextField getTxtTelefone2() {
-        return txtTelefone2;
+    public JTextField getTxtTelefone() {
+        return txtTelefone;
     }
 
-    public void setTxtTelefone2(JTextField txtTelefone2) {
-        this.txtTelefone2 = txtTelefone2;
-    }
-    public JButton getBtnConfirmar() {
-        return btnConfirmar;
+    public void setTxtTelefone(JTextField txtTelefone) {
+        this.txtTelefone = txtTelefone;
     }
 
-    public void setBtnConfirmar(JButton btnConfirmar) {
-        this.btnConfirmar = btnConfirmar;
+    public JTextField getTxtTipo() {
+        return txtTipo;
     }
+
+    public void setTxtTipo(JTextField txtTipo) {
+        this.txtTipo = txtTipo;
+    }
+
+    
+    
     
 }
