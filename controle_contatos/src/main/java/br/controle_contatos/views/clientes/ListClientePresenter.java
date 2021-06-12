@@ -5,6 +5,7 @@
  */
 package br.controle_contatos.views.clientes;
 
+import br.controle_contatos.base_dados.GerarPlanilha;
 import br.controle_contatos.business.ClienteBusiness;
 import br.controle_contatos.models.Cliente;
 import br.controle_contatos.views.interfaces.IPresenter;
@@ -13,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -70,6 +73,17 @@ public class ListClientePresenter implements IPresenter{
             @Override
             public void actionPerformed(ActionEvent e) {
                 exibir();
+            }
+        });
+        
+        this.view.getBtnGerarPlanilha().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new GerarPlanilha().gerarPlanilha(listClientes,clienteBusiness.getAllMunicipios());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(view, "Error ao gerar a planilha", "Gerar Planilha", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

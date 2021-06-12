@@ -10,14 +10,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.codec.DecoderException;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.CellRangeAddress;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Row; 
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;  
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
@@ -29,9 +29,9 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
  */
 public class GerarPlanilha {
 
-    private static final String fileName = "C:\\Users\\NOTE_190\\OneDrive\\Documentos\\xlsx\\planilhaMarcelin\\Clientes.xlsx";
+    private static final String fileName = "./relatorios.xlsx";
 
-    public void gerarPlanilha(ArrayList<Cliente> clientes, ArrayList<String> municipios) throws DecoderException {
+    public void gerarPlanilha(List<Cliente> clientes, List<String> municipios) throws DecoderException {
 
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheetClientes = workbook.createSheet("Clientes");

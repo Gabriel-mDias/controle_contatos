@@ -79,4 +79,8 @@ public class ClienteBusiness {
             throw new Exception("ID passado para exclusão é inválido");
         }
     }
+    
+    public List<String> getAllMunicipios() throws Exception {
+        return this.enderecoDAO.getAllMunicipios();
+    }
 }
