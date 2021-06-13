@@ -85,7 +85,7 @@ public class ClienteDAO {
 
     public List<Cliente> getByParametros(Cliente cliente) throws Exception {
         try {
-            StringBuilder query = new StringBuilder("SELECT c.id, c.razao_social, c.nome_fantasia, c.telefones, c.cnpj_cpf, ");
+            StringBuilder query = new StringBuilder("SELECT c.id, c.razao_social, c.nome_fantasia, c.telefones, c.cnpj_cpf, c.codigo, ");
             query.append(" e.id, e.logradouro, e.numero, e.complemento, e.bairro, e.municipio, e.cep, e.uf ");
             query.append(" FROM Cliente c LEFT JOIN Endereco e ON c.id_endereco = e.id ");
             query.append(" WHERE 1=1 ");
@@ -111,6 +111,10 @@ public class ClienteDAO {
 
                 if (cliente.getCnpjCpf() != null && cliente.getCnpjCpf().length() > 0) {
                     query.append(" AND c.cnpj_cpf LIKE ? ");
+                }
+                
+                if (cliente.getCodigo() != null && cliente.getCodigo().length() > 0) {
+                    query.append(" AND c.codigo = ? ");
                 }
 
                 if (cliente.getEndereco() != null) {
@@ -172,6 +176,10 @@ public class ClienteDAO {
                 if (cliente.getCnpjCpf() != null && cliente.getCnpjCpf().length() > 0) {
                     ps.setString(posicao++, "%" + cliente.getCnpjCpf() + "%");
                 }
+                
+                if (cliente.getCodigo() != null && cliente.getCodigo().length() > 0) {
+                    ps.setString(posicao++, "%" + cliente.getCodigo() + "%");
+                }
 
                 if (cliente.getEndereco() != null) {
 
@@ -217,6 +225,8 @@ public class ClienteDAO {
                 elemento.setNomeFantasia(rs.getString("nome_fantasia"));
                 elemento.setTelefone(rs.getString("telefones"));
                 elemento.setCnpjCpf(rs.getString("cnpj_cpf"));
+                elemento.setCodigo(rs.getString("codigo"));
+                
 
                 enderecoElemento.setLogradouro(rs.getString("logradouro"));
                 enderecoElemento.setNumero(rs.getInt("numero"));

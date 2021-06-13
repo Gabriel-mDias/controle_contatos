@@ -16,49 +16,51 @@ import javax.swing.JOptionPane;
  *
  * @author gabriel
  */
-public class VisualizarCliente implements IPresenter{
-    
+public class VisualizarCliente implements IPresenter {
+
     private ClienteView view;
     private JDesktopPane containerPai;
     private ClienteBusiness clienteBusiness;
     private Cliente clienteExibido;
-    
-    public VisualizarCliente(JDesktopPane containerPai, Long idCliente){
-        try{
+
+    public VisualizarCliente(JDesktopPane containerPai, Long idCliente) {
+        try {
             this.clienteExibido = new Cliente();
             this.clienteExibido.setId(idCliente);
             this.clienteBusiness = new ClienteBusiness();
             this.containerPai = containerPai;
             this.view = new ClienteView();
+            this.view.requestFocus();
             this.initComponents();
             this.centralizarTela();
             this.view.setVisible(true);
             this.containerPai.add(this.view);
             this.exibirClienteById();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    
-    public VisualizarCliente(JDesktopPane containerPai, Cliente cliente){
-        try{
+
+    public VisualizarCliente(JDesktopPane containerPai, Cliente cliente) {
+        try {
             this.clienteBusiness = new ClienteBusiness();
             this.containerPai = containerPai;
             this.view = new ClienteView();
+            this.view.requestFocus();
             this.initComponents();
             this.centralizarTela();
             this.view.setVisible(true);
             this.containerPai.add(this.view);
             this.exibirCliente(cliente);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    
+
     @Override
-    public void initComponents() throws Exception{  
+    public void initComponents() throws Exception {
         this.view.getBtnConfirmar().setEnabled(false);
     }
 
@@ -67,10 +69,10 @@ public class VisualizarCliente implements IPresenter{
         Dimension desktopSize = containerPai.getSize();
         Dimension jInternalFrameSize = this.view.getSize();
         this.view.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
-                              (desktopSize.height - jInternalFrameSize.height) / 2);
+                (desktopSize.height - jInternalFrameSize.height) / 2);
     }
-    
-    private void exibirClienteById(){
+
+    private void exibirClienteById() {
         try {
             this.clienteExibido = this.clienteBusiness.getByParametros(this.clienteExibido).get(0);
             this.preencheTela();
@@ -79,8 +81,8 @@ public class VisualizarCliente implements IPresenter{
             ex.printStackTrace();
         }
     }
-    
-    private void exibirCliente(Cliente cliente){
+
+    private void exibirCliente(Cliente cliente) {
         try {
             this.clienteExibido = cliente;
             this.preencheTela();
@@ -89,42 +91,46 @@ public class VisualizarCliente implements IPresenter{
             ex.printStackTrace();
         }
     }
-    
-    private void preencheTela(){
-        var nomeFantasia = this.clienteExibido.getNomeFantasia() == null ? "" : this.clienteExibido.getNomeFantasia();
-            var razaoSocial = this.clienteExibido.getRazaoSocial() == null ? "" : this.clienteExibido.getRazaoSocial();
-            var cnpj = this.clienteExibido.getCnpjCpf() == null ? "" : this.clienteExibido.getCnpjCpf();
-            
-            var bairro = this.clienteExibido.getEndereco().getBairro() == null ?  "" : this.clienteExibido.getEndereco().getBairro();
-            var cep = this.clienteExibido.getEndereco().getCep() == null ?  "" : this.clienteExibido.getEndereco().getCep();
-            var municipio = this.clienteExibido.getEndereco().getMunicipio() == null ?  "" : this.clienteExibido.getEndereco().getMunicipio();
-            var complemento = this.clienteExibido.getEndereco().getComplemento() == null ?  "" : this.clienteExibido.getEndereco().getComplemento();
-            var uf = this.clienteExibido.getEndereco().getUf() == null ?  "" : this.clienteExibido.getEndereco().getUf();
-            var numero = this.clienteExibido.getEndereco().getNumero() == null ?  "" : String.valueOf(this.clienteExibido.getEndereco().getNumero());
-            var logradouro = this.clienteExibido.getEndereco().getLogradouro() == null ?  "" : this.clienteExibido.getEndereco().getLogradouro();
-            
-            this.view.getTxtNomeFantasia().setText(nomeFantasia);
-            this.view.getTxtRazaoSocial().setText(razaoSocial);
-            this.view.getTxtCnpjCpf().setText(cnpj);
 
-            this.view.getTxtBairro().setText(bairro);
-            this.view.getTxtCep().setText(cep);
-            this.view.getTxtMunicipio().setText(municipio);
-            this.view.getTxtComplemento().setText(complemento);
-            this.view.getCbUf().setSelectedItem(uf);
-            this.view.getTxtNumero().setText(numero);
-            this.view.getTxtLogradouro().setText(logradouro);
-            
-            this.view.getTxtNomeFantasia().setEnabled(false);
-            this.view.getTxtRazaoSocial().setEnabled(false);
-            this.view.getTxtCnpjCpf().setEnabled(false);
-                    
-            this.view.getTxtBairro().setEnabled(false);
-            this.view.getTxtCep().setEnabled(false);
-            this.view.getTxtMunicipio().setEnabled(false);
-            this.view.getTxtComplemento().setEnabled(false);
-            this.view.getCbUf().setEnabled(false);
-            this.view.getTxtNumero().setEnabled(false);
-            this.view.getTxtLogradouro().setEnabled(false);        
+    private void preencheTela() {
+        var nomeFantasia = this.clienteExibido.getNomeFantasia() == null ? "" : this.clienteExibido.getNomeFantasia();
+        var razaoSocial = this.clienteExibido.getRazaoSocial() == null ? "" : this.clienteExibido.getRazaoSocial();
+        var cnpj = this.clienteExibido.getCnpjCpf() == null ? "" : this.clienteExibido.getCnpjCpf();
+        var tipo = this.clienteExibido.getTipo() == null ? "" : this.clienteExibido.getTipo();
+        var lojaRisco = this.clienteExibido.getLojaRisco() == null ? "" : this.clienteExibido.getLojaRisco();
+
+        var bairro = this.clienteExibido.getEndereco().getBairro() == null ? "" : this.clienteExibido.getEndereco().getBairro();
+        var cep = this.clienteExibido.getEndereco().getCep() == null ? "" : this.clienteExibido.getEndereco().getCep();
+        var municipio = this.clienteExibido.getEndereco().getMunicipio() == null ? "" : this.clienteExibido.getEndereco().getMunicipio();
+        var complemento = this.clienteExibido.getEndereco().getComplemento() == null ? "" : this.clienteExibido.getEndereco().getComplemento();
+        var uf = this.clienteExibido.getEndereco().getUf() == null ? "" : this.clienteExibido.getEndereco().getUf();
+        var numero = this.clienteExibido.getEndereco().getNumero() == null ? "" : String.valueOf(this.clienteExibido.getEndereco().getNumero());
+        var logradouro = this.clienteExibido.getEndereco().getLogradouro() == null ? "" : this.clienteExibido.getEndereco().getLogradouro();
+
+        this.view.getTxtNomeFantasia().setText(nomeFantasia);
+        this.view.getTxtRazaoSocial().setText(razaoSocial);
+        this.view.getTxtCnpjCpf().setText(cnpj);
+        this.view.getTxtTipo().setText(tipo);
+        this.view.getTxtLojaRisco().setText(lojaRisco);
+
+        this.view.getTxtBairro().setText(bairro);
+        this.view.getTxtCep().setText(cep);
+        this.view.getTxtMunicipio().setText(municipio);
+        this.view.getTxtComplemento().setText(complemento);
+        this.view.getCbUf().setSelectedItem(uf);
+        this.view.getTxtNumero().setText(numero);
+        this.view.getTxtLogradouro().setText(logradouro);
+
+        this.view.getTxtNomeFantasia().setEnabled(false);
+        this.view.getTxtRazaoSocial().setEnabled(false);
+        this.view.getTxtCnpjCpf().setEnabled(false);
+
+        this.view.getTxtBairro().setEnabled(false);
+        this.view.getTxtCep().setEnabled(false);
+        this.view.getTxtMunicipio().setEnabled(false);
+        this.view.getTxtComplemento().setEnabled(false);
+        this.view.getCbUf().setEnabled(false);
+        this.view.getTxtNumero().setEnabled(false);
+        this.view.getTxtLogradouro().setEnabled(false);
     }
 }

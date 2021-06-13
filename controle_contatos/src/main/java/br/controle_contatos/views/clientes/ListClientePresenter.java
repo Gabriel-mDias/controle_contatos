@@ -172,6 +172,8 @@ public class ListClientePresenter implements IPresenter {
                 JOptionPane.showMessageDialog(view, "Cliente não selecionado", "Exibir Cliente", JOptionPane.ERROR_MESSAGE);
             } else {
                 var cliente = this.listClientes.get(posicaoSelecionada);
+                cliente.getCnpjCpf().replaceAll(".", "").replaceAll("/", "").replaceAll("-", "");
+                cliente.getEndereco().getCep().replace("-", "");
                 new VisualizarCliente(containerPai, cliente);
             }
         } catch (Exception e) {

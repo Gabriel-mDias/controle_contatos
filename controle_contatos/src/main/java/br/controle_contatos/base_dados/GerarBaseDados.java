@@ -23,12 +23,12 @@ public class GerarBaseDados {
     public static void main(String[] args) throws IOException, DecoderException {
 
         LerTabelaPdf lerPDF = new LerTabelaPdf();
-        ArrayList<ClientePDF> clientesPDF = lerPDF.lerDados("/home/gabriel/Downloads/Clientes Sergio[565] (1).pdf");           //biel
-        //ArrayList<ClientePDF> clientesPDF = lerPDF.lerDados("C:\\Users\\NOTE_190\\Downloads\\Clientes Sergio[565] (1).pdf");     //said
+        //ArrayList<ClientePDF> clientesPDF = lerPDF.lerDados("/home/gabriel/Downloads/Clientes Sergio[565] (1).pdf");           //biel
+        ArrayList<ClientePDF> clientesPDF = lerPDF.lerDados("C:\\Users\\NOTE_190\\Downloads\\Clientes Sergio[565] (1).pdf");     //said
 
         LerTabelaPlanilha lerPDFPlanilha = new LerTabelaPlanilha();
-        ArrayList<ClientePlanilha> clientesPlanilha = lerPDFPlanilha.lerDados("/home/gabriel/Downloads/PROJETO DE ATUALIZAÇÃO[566] (3).pdf");         //biel
-        //ArrayList<ClientePlanilha> clientesPlanilha = lerPDFPlanilha.lerDados("C:\\Users\\NOTE_190\\Downloads\\PROJETO DE ATUALIZAÇÃO[566] (3).pdf");   //said    
+        //ArrayList<ClientePlanilha> clientesPlanilha = lerPDFPlanilha.lerDados("/home/gabriel/Downloads/PROJETO DE ATUALIZAÇÃO[566] (3).pdf");         //biel
+        ArrayList<ClientePlanilha> clientesPlanilha = lerPDFPlanilha.lerDados("C:\\Users\\NOTE_190\\Downloads\\PROJETO DE ATUALIZAÇÃO[566] (3).pdf");   //said    
 
         String[] cnpjClientes = new String[clientesPDF.size()];
         for (int i = 0; i < cnpjClientes.length; i++) {
