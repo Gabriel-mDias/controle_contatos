@@ -17,11 +17,6 @@ import javax.swing.text.MaskFormatter;
 public class Principal {
     
     public static void main(String args[]) throws IOException, ParseException{
-         String value = "36325447000188";
-         
-          MaskFormatter cnpj = new MaskFormatter("##.###.###/####-##");
-          cnpj.setValueContainsLiteralCharacters(false);
-          System.out.println(cnpj.valueToString(value));
-        //new TelaPrincipalPresenter();
+        new TelaPrincipalPresenter();
     }
 }
