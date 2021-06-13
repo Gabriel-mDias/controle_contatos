@@ -50,20 +50,24 @@ public class ClienteDAO {
 
     public void insert(Cliente cliente) throws Exception {
         try {
-            String query = "INSERT INTO Cliente(razao_social, telefones, cnpj_cpf, nome_fantasia, "
-                    + cliente.getEndereco() != null ? ", id_endereco ) " : " ) "
-                    + "VALUES (?,?,?,?,?,?,?"
-                    + cliente.getEndereco() != null ? ",?" : ""
-                    + ")";
+            StringBuilder query = new StringBuilder("INSERT INTO Cliente(razao_social, telefones, cnpj_cpf, nome_fantasia,tipo,loja_risco,codigo ");
+            query.append(cliente.getEndereco() != null ? ", id_endereco ) " : " ) ");
+            query.append("VALUES (?,?,?,?,?,?,?");
+            query.append(cliente.getEndereco() != null ? ",?" : "");
+            query.append(")");
 
             Connection conn = this.manager.conectar();
             this.manager.abreTransacao();
 
-            PreparedStatement ps = conn.prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query.toString());
             ps.setString(1, cliente.getRazaoSocial());
             ps.setString(2, cliente.getTelefone());
-            ps.setString(6, cliente.getCnpjCpf());
-            ps.setString(7, cliente.getNomeFantasia());
+            ps.setString(3, cliente.getCnpjCpf());
+            ps.setString(4, cliente.getNomeFantasia());
+            ps.setString(5, cliente.getTipo());
+            ps.setString(6, cliente.getLojaRisco());
+            ps.setString(7, cliente.getCodigo());
+            
             if (cliente.getEndereco() != null) {
                 ps.setLong(8, cliente.getEndereco().getId());
             }
