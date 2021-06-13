@@ -12,6 +12,7 @@ import br.controle_contatos.views.interfaces.IPresenter;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,34 +20,35 @@ import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 /**
  * @author gabriel
  */
-public class ListClientePresenter implements IPresenter{
-    
+public class ListClientePresenter implements IPresenter {
+
     private ListClienteView view;
     private JDesktopPane containerPai;
     private ClienteBusiness clienteBusiness;
     private Cliente filtro;
     private List<Cliente> listClientes;
-    
-    public ListClientePresenter(JDesktopPane containerPai){
+
+    public ListClientePresenter(JDesktopPane containerPai) {
         filtro = new Cliente();
         listClientes = new ArrayList<>();
         clienteBusiness = new ClienteBusiness();
-        
-        try{
+
+        try {
             this.containerPai = containerPai;
             this.view = new ListClienteView();
             this.initComponents();
             this.centralizarTela();
             this.view.setVisible(true);
             this.containerPai.add(view);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
 
     public ListClienteView getView() {
@@ -55,32 +57,32 @@ public class ListClientePresenter implements IPresenter{
 
     @Override
     public void initComponents() throws Exception {
-        this.view.getBtnBuscar().addActionListener( new ActionListener() {
+        this.view.getBtnBuscar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buscarContatos();
             }
         });
-        
+
         this.view.getBtnExcluir().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 excluir();
             }
         });
-        
+
         this.view.getBtnExibir().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 exibir();
             }
         });
-        
+
         this.view.getBtnGerarPlanilha().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    new GerarPlanilha().gerarPlanilha(listClientes,clienteBusiness.getAllMunicipios());
+                    new GerarPlanilha().gerarPlanilha(listClientes, clienteBusiness.getAllMunicipios());
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(view, "Error ao gerar a planilha", "Gerar Planilha", JOptionPane.ERROR_MESSAGE);
                 }
@@ -93,15 +95,15 @@ public class ListClientePresenter implements IPresenter{
         Dimension desktopSize = containerPai.getSize();
         Dimension jInternalFrameSize = this.view.getSize();
         this.view.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
-                              (desktopSize.height - jInternalFrameSize.height) / 2);
+                (desktopSize.height - jInternalFrameSize.height) / 2);
     }
-    
-    public void buscarContatos(){
-        try{
+
+    public void buscarContatos() {
+        try {
             this.filtro = new Cliente();
             String valorBuscado = this.view.getTxtFiltro().getText();
-        
-            switch ( this.view.getCbBusca().getSelectedIndex() ){
+
+            switch (this.view.getCbBusca().getSelectedIndex()) {
                 case 0:
                     filtro.setCnpjCpf(valorBuscado);
                     break;
@@ -119,58 +121,60 @@ public class ListClientePresenter implements IPresenter{
             this.listClientes.clear();
             this.listClientes.addAll(this.clienteBusiness.getByParametros(filtro));
             this.preencheTabela();
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    
-    private void preencheTabela(){
-        var dadosTabela = new DefaultTableModel(new Object[]{"ID", "CNPJ ou CPF", "Nome Fantasia", "Razão Social"}, 0);
-        
-        for(Cliente elemento : listClientes){
-            dadosTabela.addRow( new Object[]{
-                elemento.getId(),
-                elemento.getCnpjCpf(),
-                elemento.getNomeFantasia(),
-                elemento.getRazaoSocial()
+
+    private void preencheTabela() throws Exception {
+        var dadosTabela = new DefaultTableModel(new Object[]{"Código", "CNPJ/CPF","Razão Social", "Telefone","Contato"}, 0);
+        MaskFormatter cnpj = new MaskFormatter("##.###.###/####-##");
+        for (Cliente elemento : listClientes) {
+            cnpj.setValueContainsLiteralCharacters(false);
+            dadosTabela.addRow(new Object[]{
+                elemento.getCodigo(),
+                cnpj.valueToString(elemento.getCnpjCpf()),
+                elemento.getRazaoSocial(),
+                elemento.getTelefone(),
+                elemento.getContato()
             });
         }
-        
+
         this.view.getTblClientes().setModel(dadosTabela);
     }
-    
-    private void excluir(){
-        try{
+
+    private void excluir() {
+        try {
             var posicaoSelecionada = this.view.getTblClientes().getSelectedRow();
-        
-            if(posicaoSelecionada < 0 ){
+
+            if (posicaoSelecionada < 0) {
                 JOptionPane.showMessageDialog(view, "Cliente não selecionado", "Excluir Cliente", JOptionPane.ERROR_MESSAGE);
-            }else{
+            } else {
                 var idCliente = this.listClientes.get(posicaoSelecionada);
                 this.clienteBusiness.excluir(idCliente.getId());
                 JOptionPane.showConfirmDialog(view, "Cliente excluído!", "Excluir Cliente", JOptionPane.DEFAULT_OPTION);
                 this.listClientes.remove(idCliente);
                 preencheTabela();
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(view, "Error ao excluir o cliente, consultar os desenvolvedores", "Excluir Cliente", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
-    
-    private void exibir(){
-        try{
+
+    private void exibir() {
+        try {
             var posicaoSelecionada = this.view.getTblClientes().getSelectedRow();
-        
-            if(posicaoSelecionada < 0 ){
+
+            if (posicaoSelecionada < 0) {
                 JOptionPane.showMessageDialog(view, "Cliente não selecionado", "Exibir Cliente", JOptionPane.ERROR_MESSAGE);
-            }else{
+            } else {
                 var cliente = this.listClientes.get(posicaoSelecionada);
                 new VisualizarCliente(containerPai, cliente);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(view, "Error ao exibir o cliente, consultar os desenvolvedores", "Exibir Cliente", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }

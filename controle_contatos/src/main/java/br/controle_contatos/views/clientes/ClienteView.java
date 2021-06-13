@@ -57,7 +57,6 @@ public class ClienteView extends javax.swing.JInternalFrame {
         lblRazaoSocial = new javax.swing.JLabel();
         txtRazaoSocial = new javax.swing.JTextField();
         lblCnpjCpf = new javax.swing.JLabel();
-        txtCnpjCpf = new javax.swing.JTextField();
         lblTelefone = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JTextField();
         lblNomeFantasia = new javax.swing.JLabel();
@@ -70,6 +69,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
         txtTipo = new javax.swing.JTextField();
         lblLojaRisco = new javax.swing.JLabel();
         txtLojaRisco = new javax.swing.JTextField();
+        txtCnpjCpf = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -184,7 +184,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
         lblRazaoSocial.setText("Razão Social:");
 
-        lblCnpjCpf.setText("CNPJ ou CPF:");
+        lblCnpjCpf.setText("CNPJ:");
 
         lblTelefone.setText("Telefone:");
 
@@ -222,6 +222,17 @@ public class ClienteView extends javax.swing.JInternalFrame {
 
         lblLojaRisco.setText("Loja Risco:");
 
+        try {
+            txtCnpjCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCnpjCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCnpjCpfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelClienteLayout = new javax.swing.GroupLayout(panelCliente);
         panelCliente.setLayout(panelClienteLayout);
         panelClienteLayout.setHorizontalGroup(
@@ -232,10 +243,10 @@ public class ClienteView extends javax.swing.JInternalFrame {
                     .addGroup(panelClienteLayout.createSequentialGroup()
                         .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelClienteLayout.createSequentialGroup()
-                                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCnpjCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCnpjCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtCnpjCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
                                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblLojaRisco)
                                     .addComponent(txtLojaRisco)))
@@ -288,14 +299,14 @@ public class ClienteView extends javax.swing.JInternalFrame {
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23)
                 .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(panelClienteLayout.createSequentialGroup()
                             .addComponent(lblLojaRisco)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtLojaRisco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(panelClienteLayout.createSequentialGroup()
                             .addComponent(lblCnpjCpf)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtCnpjCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelClienteLayout.createSequentialGroup()
                         .addComponent(lblTipo)
@@ -365,6 +376,10 @@ public class ClienteView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeFantasiaActionPerformed
 
+    private void txtCnpjCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCnpjCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCnpjCpfActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
@@ -390,7 +405,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelEndereco;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCep;
-    private javax.swing.JTextField txtCnpjCpf;
+    private javax.swing.JFormattedTextField txtCnpjCpf;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtComplemento;
     private javax.swing.JTextField txtContato;
@@ -593,7 +608,7 @@ public class ClienteView extends javax.swing.JInternalFrame {
     }
 
     public void setTxtCnpjCpf(JTextField txtCnpjCpf) {
-        this.txtCnpjCpf = txtCnpjCpf;
+        this.txtCnpjCpf = (JFormattedTextField) txtCnpjCpf;
     }
 
     public JTextField getTxtCodigo() {

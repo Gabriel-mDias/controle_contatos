@@ -114,5 +114,17 @@ public class VisualizarCliente implements IPresenter{
             this.view.getCbUf().setSelectedItem(uf);
             this.view.getTxtNumero().setText(numero);
             this.view.getTxtLogradouro().setText(logradouro);
+            
+            this.view.getTxtNomeFantasia().setEnabled(false);
+            this.view.getTxtRazaoSocial().setEnabled(false);
+            this.view.getTxtCnpjCpf().setEnabled(false);
+                    
+            this.view.getTxtBairro().setEnabled(false);
+            this.view.getTxtCep().setEnabled(false);
+            this.view.getTxtMunicipio().setEnabled(false);
+            this.view.getTxtComplemento().setEnabled(false);
+            this.view.getCbUf().setEnabled(false);
+            this.view.getTxtNumero().setEnabled(false);
+            this.view.getTxtLogradouro().setEnabled(false);        
     }
 }
