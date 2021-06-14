@@ -42,7 +42,7 @@ public class ClienteBusiness {
     public void update(Cliente cliente) throws Exception {
         if (cliente != null) {
             this.clienteDAO.update(cliente);
-            if (cliente.getEndereco() != null) {
+            if (cliente.getEndereco() != null && cliente.getEndereco().getId() != null) {
                 this.enderecoDAO.update(cliente.getEndereco());
             } else {
                 throw new Exception("Endereço passado para update é nulo");

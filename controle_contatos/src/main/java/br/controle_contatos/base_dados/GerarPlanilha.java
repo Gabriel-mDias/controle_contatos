@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import org.apache.commons.codec.DecoderException;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -29,7 +30,8 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
  */
 public class GerarPlanilha {
 
-    private static final String fileName = "./relatorios.xlsx";
+    //private static final String fileName = "/home/gabriel/Documentos/Outros Projetos/Projeto/relatorios/relatorio";
+    private static final String fileName = "./relatorios/relatorio";
 
     public void gerarPlanilha(List<Cliente> clientes, List<String> municipios) throws DecoderException {
 
@@ -152,17 +154,22 @@ public class GerarPlanilha {
         sheetClientes.autoSizeColumn(4);
         
         try {
-            FileOutputStream out = new FileOutputStream(new File(GerarPlanilha.fileName));
-            workbook.write(out);
-            out.close();
-            System.out.println("Arquivo Excel criado com sucesso!");
-
+            var dateString = new Date().toString().replaceAll(" ", "_").replaceAll(":", "-");
+            var arquivoRelatorio = new File(GerarPlanilha.fileName.concat("_"+dateString+".xlsx"));
+            if(arquivoRelatorio.createNewFile()){
+                FileOutputStream out = new FileOutputStream(arquivoRelatorio);
+                workbook.write(out);
+                out.close();
+                System.out.println("Arquivo Excel criado com sucesso!");
+            }else{
+                throw new Exception("Caminho inválido");
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.out.println("Arquivo não encontrado!");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Erro na edição do arquivo!");
+            System.out.println("Erro na geração do arquivo!");
         }
 
     }

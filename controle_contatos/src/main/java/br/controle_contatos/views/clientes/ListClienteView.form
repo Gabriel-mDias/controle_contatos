@@ -32,21 +32,21 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="txtFiltro" min="-2" pref="390" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="cbBusca" min="-2" pref="119" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="txtFiltro" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="cbBusca" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="1068" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnBuscar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnBuscar" alignment="0" pref="176" max="32767" attributes="0"/>
                           <Component id="btnExcluir" max="32767" attributes="0"/>
                           <Component id="btnEditar" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnExibir" max="32767" attributes="0"/>
-                          <Component id="btnGerarPlanilha" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="btnExibir" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnGerarPlanilha" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

@@ -45,6 +45,7 @@ public class ListClientePresenter implements IPresenter {
             this.centralizarTela();
             this.view.setVisible(true);
             this.containerPai.add(view);
+            this.view.requestFocus();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,12 +78,20 @@ public class ListClientePresenter implements IPresenter {
                 exibir();
             }
         });
+        
+        this.view.getBtnEditar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                editar();
+            }
+        });
 
         this.view.getBtnGerarPlanilha().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     new GerarPlanilha().gerarPlanilha(listClientes, clienteBusiness.getAllMunicipios());
+                    JOptionPane.showMessageDialog(view, "Planilha gerada na pasta correspondente!", "Gerar Planilha", JOptionPane.DEFAULT_OPTION);
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(view, "Error ao gerar a planilha", "Gerar Planilha", JOptionPane.ERROR_MESSAGE);
                 }
@@ -174,10 +183,28 @@ public class ListClientePresenter implements IPresenter {
                 var cliente = this.listClientes.get(posicaoSelecionada);
                 cliente.getCnpjCpf().replaceAll(".", "").replaceAll("/", "").replaceAll("-", "");
                 cliente.getEndereco().getCep().replace("-", "");
-                new VisualizarCliente(containerPai, cliente);
+                new VisualizarClientePresenter(containerPai, cliente);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(view, "Error ao exibir o cliente, consultar os desenvolvedores", "Exibir Cliente", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+    
+    private void editar() {
+        try {
+            var posicaoSelecionada = this.view.getTblClientes().getSelectedRow();
+
+            if (posicaoSelecionada < 0) {
+                JOptionPane.showMessageDialog(view, "Cliente não selecionado", "Editar Cliente", JOptionPane.ERROR_MESSAGE);
+            } else {
+                var cliente = this.listClientes.get(posicaoSelecionada);
+                cliente.getCnpjCpf().replaceAll(".", "").replaceAll("/", "").replaceAll("-", "");
+                cliente.getEndereco().getCep().replace("-", "");
+                new UpdateClientePresenter(containerPai, cliente);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(view, "Error ao editar o cliente, consultar os desenvolvedores", "Editar Cliente", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }

@@ -8,7 +8,6 @@ package br.controle_contatos.main;
 import br.controle_contatos.views.TelaPrincipalPresenter;
 import java.io.IOException;
 import java.text.ParseException;
-import javax.swing.text.MaskFormatter;
 
 /**
  *

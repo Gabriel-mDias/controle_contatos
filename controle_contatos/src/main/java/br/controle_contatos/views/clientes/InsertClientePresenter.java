@@ -35,6 +35,7 @@ public class InsertClientePresenter implements IPresenter{
             this.centralizarTela();
             this.view.setVisible(true);
             this.containerPai.add(this.view);
+            this.view.requestFocus();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -72,6 +73,9 @@ public class InsertClientePresenter implements IPresenter{
             }     
             novoCliente.setTipo(this.view.getTxtTipo().getText());
             novoCliente.setLojaRisco(this.view.getTxtLojaRisco().getText());
+            novoCliente.setTelefone(this.view.getTxtTelefone().getText());
+            novoCliente.setCodigo(this.view.getTxtCodigo().getText());
+            novoCliente.setContato(this.view.getTxtContato().getText());
             
             endereco.setBairro(this.view.getTxtBairro().getText());
             if( this.view.getTxtCep().getText() != null && this.view.getTxtCep().getText().length() > 0 ){

@@ -74,8 +74,7 @@ public class EnderecoDAO {
             ps2.setString(5, endereco.getMunicipio());
             ps2.setString(6, endereco.getCep());
             ps2.setString(7, endereco.getUf());
-            ps2.setString(8, endereco.getBairro());
-            ps2.setLong(9, endereco.getId());
+            ps2.setLong(8, endereco.getId());
 
             ps2.executeUpdate();
             this.manager.fechaTransacao();

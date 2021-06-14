@@ -16,25 +16,25 @@ import javax.swing.JOptionPane;
  *
  * @author gabriel
  */
-public class VisualizarCliente implements IPresenter {
+public class VisualizarClientePresenter implements IPresenter {
 
     private ClienteView view;
     private JDesktopPane containerPai;
     private ClienteBusiness clienteBusiness;
     private Cliente clienteExibido;
 
-    public VisualizarCliente(JDesktopPane containerPai, Long idCliente) {
+    public VisualizarClientePresenter(JDesktopPane containerPai, Long idCliente) {
         try {
             this.clienteExibido = new Cliente();
             this.clienteExibido.setId(idCliente);
             this.clienteBusiness = new ClienteBusiness();
             this.containerPai = containerPai;
             this.view = new ClienteView();
-            this.view.requestFocus();
             this.initComponents();
             this.centralizarTela();
             this.view.setVisible(true);
             this.containerPai.add(this.view);
+            this.view.getFocusOwner();
             this.exibirClienteById();
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class VisualizarCliente implements IPresenter {
 
     }
 
-    public VisualizarCliente(JDesktopPane containerPai, Cliente cliente) {
+    public VisualizarClientePresenter(JDesktopPane containerPai, Cliente cliente) {
         try {
             this.clienteBusiness = new ClienteBusiness();
             this.containerPai = containerPai;
@@ -53,6 +53,7 @@ public class VisualizarCliente implements IPresenter {
             this.view.setVisible(true);
             this.containerPai.add(this.view);
             this.exibirCliente(cliente);
+            this.view.requestFocus();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,6 +63,7 @@ public class VisualizarCliente implements IPresenter {
     @Override
     public void initComponents() throws Exception {
         this.view.getBtnConfirmar().setEnabled(false);
+        this.view.getBtnConfirmar().setVisible(false);
     }
 
     @Override
@@ -98,6 +100,9 @@ public class VisualizarCliente implements IPresenter {
         var cnpj = this.clienteExibido.getCnpjCpf() == null ? "" : this.clienteExibido.getCnpjCpf();
         var tipo = this.clienteExibido.getTipo() == null ? "" : this.clienteExibido.getTipo();
         var lojaRisco = this.clienteExibido.getLojaRisco() == null ? "" : this.clienteExibido.getLojaRisco();
+        var telefone = this.clienteExibido.getTelefone() == null ? "" : this.clienteExibido.getTelefone();
+        var contato = this.clienteExibido.getContato() == null ? "" : this.clienteExibido.getContato();
+        var codigo = this.clienteExibido.getCodigo() == null ? "" : this.clienteExibido.getCodigo();
 
         var bairro = this.clienteExibido.getEndereco().getBairro() == null ? "" : this.clienteExibido.getEndereco().getBairro();
         var cep = this.clienteExibido.getEndereco().getCep() == null ? "" : this.clienteExibido.getEndereco().getCep();
@@ -112,6 +117,9 @@ public class VisualizarCliente implements IPresenter {
         this.view.getTxtCnpjCpf().setText(cnpj);
         this.view.getTxtTipo().setText(tipo);
         this.view.getTxtLojaRisco().setText(lojaRisco);
+        this.view.getTxtTelefone().setText(telefone);
+        this.view.getTxtContato().setText(contato);
+        this.view.getTxtCodigo().setText(codigo);
 
         this.view.getTxtBairro().setText(bairro);
         this.view.getTxtCep().setText(cep);
@@ -124,6 +132,11 @@ public class VisualizarCliente implements IPresenter {
         this.view.getTxtNomeFantasia().setEnabled(false);
         this.view.getTxtRazaoSocial().setEnabled(false);
         this.view.getTxtCnpjCpf().setEnabled(false);
+        this.view.getTxtTipo().setEnabled(false);
+        this.view.getTxtLojaRisco().setEnabled(false);
+        this.view.getTxtTelefone().setEnabled(false);
+        this.view.getTxtContato().setEnabled(false);
+        this.view.getTxtCodigo().setEnabled(false);
 
         this.view.getTxtBairro().setEnabled(false);
         this.view.getTxtCep().setEnabled(false);
@@ -132,5 +145,6 @@ public class VisualizarCliente implements IPresenter {
         this.view.getCbUf().setEnabled(false);
         this.view.getTxtNumero().setEnabled(false);
         this.view.getTxtLogradouro().setEnabled(false);
+        this.view.getTxtTelefone().setEnabled(false);
     }
 }

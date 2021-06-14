@@ -85,8 +85,8 @@ public class ClienteDAO {
 
     public List<Cliente> getByParametros(Cliente cliente) throws Exception {
         try {
-            StringBuilder query = new StringBuilder("SELECT c.id, c.razao_social, c.nome_fantasia, c.telefones, c.cnpj_cpf, c.codigo, ");
-            query.append(" e.id, e.logradouro, e.numero, e.complemento, e.bairro, e.municipio, e.cep, e.uf ");
+            StringBuilder query = new StringBuilder("SELECT c.id as idCliente, c.razao_social, c.nome_fantasia, c.telefones, c.cnpj_cpf, c.codigo, ");
+            query.append(" e.id as idEndereco, e.logradouro, e.numero, e.complemento, e.bairro, e.municipio, e.cep, e.uf ");
             query.append(" FROM Cliente c LEFT JOIN Endereco e ON c.id_endereco = e.id ");
             query.append(" WHERE 1=1 ");
             
@@ -220,14 +220,14 @@ public class ClienteDAO {
                 Cliente elemento = new Cliente();
                 Endereco enderecoElemento = new Endereco();
 
-                elemento.setId(rs.getLong("id"));
+                elemento.setId(rs.getLong("idCliente"));
                 elemento.setRazaoSocial(rs.getString("razao_social"));
                 elemento.setNomeFantasia(rs.getString("nome_fantasia"));
                 elemento.setTelefone(rs.getString("telefones"));
                 elemento.setCnpjCpf(rs.getString("cnpj_cpf"));
                 elemento.setCodigo(rs.getString("codigo"));
                 
-
+                enderecoElemento.setId(rs.getLong("idEndereco"));
                 enderecoElemento.setLogradouro(rs.getString("logradouro"));
                 enderecoElemento.setNumero(rs.getInt("numero"));
                 enderecoElemento.setComplemento(rs.getString("complemento"));
