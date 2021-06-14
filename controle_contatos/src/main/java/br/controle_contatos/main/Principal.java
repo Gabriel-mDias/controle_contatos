@@ -7,6 +7,7 @@ package br.controle_contatos.main;
 
 import br.controle_contatos.views.TelaPrincipalPresenter;
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.io.IOException;
  */
 public class Principal {
     
-    public static void main(String args[]) throws IOException{
-       new TelaPrincipalPresenter();
+    public static void main(String args[]) throws IOException, ParseException{
+        new TelaPrincipalPresenter();
     }
 }

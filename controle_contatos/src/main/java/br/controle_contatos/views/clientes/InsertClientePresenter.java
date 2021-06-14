@@ -30,10 +30,12 @@ public class InsertClientePresenter implements IPresenter{
             this.clienteBusiness = new ClienteBusiness();
             this.containerPai = containerPai;
             this.view = new ClienteView();
+            this.view.requestFocus();
             this.initComponents();
             this.centralizarTela();
             this.view.setVisible(true);
             this.containerPai.add(this.view);
+            this.view.requestFocus();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -65,10 +67,21 @@ public class InsertClientePresenter implements IPresenter{
 
             novoCliente.setNomeFantasia(this.view.getTxtNomeFantasia().getText());
             novoCliente.setRazaoSocial(this.view.getTxtRazaoSocial().getText());
-            novoCliente.setCnpjCpf(this.view.getTxtCnpjCpf().getText());
-
+            if( this.view.getTxtCnpjCpf().getText() != null && this.view.getTxtCnpjCpf().getText().length() > 0 ){
+                var cnpj = this.view.getTxtCnpjCpf().getText().replaceAll(".", "").replaceAll("-", "").replaceAll("/","");
+                novoCliente.setCnpjCpf(cnpj);
+            }     
+            novoCliente.setTipo(this.view.getTxtTipo().getText());
+            novoCliente.setLojaRisco(this.view.getTxtLojaRisco().getText());
+            novoCliente.setTelefone(this.view.getTxtTelefone().getText());
+            novoCliente.setCodigo(this.view.getTxtCodigo().getText());
+            novoCliente.setContato(this.view.getTxtContato().getText());
+            
             endereco.setBairro(this.view.getTxtBairro().getText());
-            endereco.setCep(this.view.getTxtCep().getText());
+            if( this.view.getTxtCep().getText() != null && this.view.getTxtCep().getText().length() > 0 ){
+                var cep = this.view.getTxtCep().getText().replace("-", "");
+                endereco.setCep(cep);
+            }      
             endereco.setMunicipio(this.view.getTxtMunicipio().getText());
             endereco.setComplemento(this.view.getTxtComplemento().getText());
             endereco.setUf(String.valueOf(this.view.getCbUf().getSelectedItem()));
