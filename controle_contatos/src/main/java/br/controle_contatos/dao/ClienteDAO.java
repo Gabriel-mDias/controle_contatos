@@ -25,7 +25,7 @@ public class ClienteDAO {
     public void update(Cliente cliente) throws SQLException, Exception {
 
         try {
-            String query = "UPDATE Cliente SET razao_social=?, telefones=?, cnpj_cpf=?, nome_fantasia=? WHERE id = ?";
+            String query = "UPDATE Cliente SET razao_social=?, telefones=?, cnpj_cpf=?, nome_fantasia=?, contato = ? WHERE id = ?";
 
             Connection conn = this.manager.conectar();
             this.manager.abreTransacao();
@@ -35,7 +35,8 @@ public class ClienteDAO {
             ps.setString(2, cliente.getTelefone());
             ps.setString(3, cliente.getCnpjCpf());
             ps.setString(4, cliente.getNomeFantasia());
-            ps.setLong(5, cliente.getId());
+            ps.setString(5, cliente.getContato());
+            ps.setLong(6, cliente.getId());
 
             
             ps.executeUpdate();
@@ -50,9 +51,9 @@ public class ClienteDAO {
 
     public void insert(Cliente cliente) throws Exception {
         try {
-            StringBuilder query = new StringBuilder("INSERT INTO Cliente(razao_social, telefones, cnpj_cpf, nome_fantasia,tipo,loja_risco,codigo ");
+            StringBuilder query = new StringBuilder("INSERT INTO Cliente(razao_social, telefones, cnpj_cpf, nome_fantasia,tipo,loja_risco,codigo,contato,");
             query.append(cliente.getEndereco() != null ? ", id_endereco ) " : " ) ");
-            query.append("VALUES (?,?,?,?,?,?,?");
+            query.append("VALUES (?,?,?,?,?,?,?,?");
             query.append(cliente.getEndereco() != null ? ",?" : "");
             query.append(")");
 
@@ -67,9 +68,9 @@ public class ClienteDAO {
             ps.setString(5, cliente.getTipo());
             ps.setString(6, cliente.getLojaRisco());
             ps.setString(7, cliente.getCodigo());
-            
+            ps.setString(8, cliente.getContato()  );
             if (cliente.getEndereco() != null) {
-                ps.setLong(8, cliente.getEndereco().getId());
+                ps.setLong(9, cliente.getEndereco().getId());
             }
 
             ps.executeUpdate();
@@ -85,7 +86,7 @@ public class ClienteDAO {
 
     public List<Cliente> getByParametros(Cliente cliente) throws Exception {
         try {
-            StringBuilder query = new StringBuilder("SELECT c.id as idCliente, c.razao_social, c.nome_fantasia, c.telefones, c.cnpj_cpf, c.codigo, ");
+            StringBuilder query = new StringBuilder("SELECT c.id as idCliente, c.razao_social, c.nome_fantasia, c.telefones, c.cnpj_cpf, c.codigo,c.contato ");
             query.append(" e.id as idEndereco, e.logradouro, e.numero, e.complemento, e.bairro, e.municipio, e.cep, e.uf ");
             query.append(" FROM Cliente c LEFT JOIN Endereco e ON c.id_endereco = e.id ");
             query.append(" WHERE 1=1 ");
@@ -116,7 +117,11 @@ public class ClienteDAO {
                 if (cliente.getCodigo() != null && cliente.getCodigo().length() > 0) {
                     query.append(" AND c.codigo = ? ");
                 }
-
+               
+                if (cliente.getContato() != null && cliente.getContato().length() > 0) {
+                    query.append(" AND c.contato LIKE ? ");
+                }
+               
                 if (cliente.getEndereco() != null) {
 
                     if (cliente.getEndereco().getLogradouro() != null && cliente.getEndereco().getLogradouro().length() > 0) {
@@ -180,6 +185,9 @@ public class ClienteDAO {
                 if (cliente.getCodigo() != null && cliente.getCodigo().length() > 0) {
                     ps.setString(posicao++, "%" + cliente.getCodigo() + "%");
                 }
+                if (cliente.getContato() != null && cliente.getContato().length() > 0) {
+                    ps.setString(posicao++, "%" + cliente.getContato() + "%");
+                }
 
                 if (cliente.getEndereco() != null) {
 
@@ -226,6 +234,7 @@ public class ClienteDAO {
                 elemento.setTelefone(rs.getString("telefones"));
                 elemento.setCnpjCpf(rs.getString("cnpj_cpf"));
                 elemento.setCodigo(rs.getString("codigo"));
+                elemento.setContato(rs.getString("contato"));
                 
                 enderecoElemento.setId(rs.getLong("idEndereco"));
                 enderecoElemento.setLogradouro(rs.getString("logradouro"));

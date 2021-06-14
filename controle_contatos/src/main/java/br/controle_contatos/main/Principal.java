@@ -16,6 +16,9 @@ import java.text.ParseException;
 public class Principal {
     
     public static void main(String args[]) throws IOException, ParseException{
+        //var texto = "99.999.999/5555-99";    
+        //var cnpj = texto.replaceAll("[\\D]", "");
+        //System.out.println(cnpj);
         new TelaPrincipalPresenter();
     }
 }

@@ -68,7 +68,7 @@ public class InsertClientePresenter implements IPresenter{
             novoCliente.setNomeFantasia(this.view.getTxtNomeFantasia().getText());
             novoCliente.setRazaoSocial(this.view.getTxtRazaoSocial().getText());
             if( this.view.getTxtCnpjCpf().getText() != null && this.view.getTxtCnpjCpf().getText().length() > 0 ){
-                var cnpj = this.view.getTxtCnpjCpf().getText().replaceAll(".", "").replaceAll("-", "").replaceAll("/","");
+                var cnpj = this.view.getTxtCnpjCpf().getText().replaceAll("[\\D]", "");
                 novoCliente.setCnpjCpf(cnpj);
             }     
             novoCliente.setTipo(this.view.getTxtTipo().getText());
