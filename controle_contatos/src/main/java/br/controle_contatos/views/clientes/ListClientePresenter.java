@@ -122,6 +122,9 @@ public class ListClientePresenter implements IPresenter {
                 case 2:
                     filtro.setRazaoSocial(valorBuscado);
                     break;
+                case 3:
+                    filtro.setCodigo(valorBuscado);
+                    break;
                 default:
                     filtro.setCnpjCpf(valorBuscado);
                     break;
@@ -161,11 +164,15 @@ public class ListClientePresenter implements IPresenter {
             if (posicaoSelecionada < 0) {
                 JOptionPane.showMessageDialog(view, "Cliente não selecionado", "Excluir Cliente", JOptionPane.ERROR_MESSAGE);
             } else {
-                var idCliente = this.listClientes.get(posicaoSelecionada);
-                this.clienteBusiness.excluir(idCliente.getId());
-                JOptionPane.showConfirmDialog(view, "Cliente excluído!", "Excluir Cliente", JOptionPane.DEFAULT_OPTION);
-                this.listClientes.remove(idCliente);
-                preencheTabela();
+                var input = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir esse Cliente?");
+                if( input == 0 ){
+                    var idCliente = this.listClientes.get(posicaoSelecionada);
+                    this.clienteBusiness.excluir(idCliente.getId());
+                    JOptionPane.showConfirmDialog(view, "Cliente excluído!", "Excluir Cliente", JOptionPane.DEFAULT_OPTION);
+                    this.listClientes.remove(idCliente);
+                    preencheTabela();
+                }
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(view, "Error ao excluir o cliente, consultar os desenvolvedores", "Excluir Cliente", JOptionPane.ERROR_MESSAGE);

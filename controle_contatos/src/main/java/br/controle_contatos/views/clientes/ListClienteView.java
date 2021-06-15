@@ -54,7 +54,7 @@ public class ListClienteView extends javax.swing.JInternalFrame {
 
         txtFiltro.setToolTipText("Preencha o texto de acordo com o campo selecionado");
 
-        cbBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CNPJ/CPF", "Código", "Razao Social" }));
+        cbBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CNPJ/CPF", "Nome Fantasia", "Razao Social", "Código" }));
         cbBusca.setToolTipText("Selecione o campo a ser buscado");
 
         btnBuscar.setText("Buscar");

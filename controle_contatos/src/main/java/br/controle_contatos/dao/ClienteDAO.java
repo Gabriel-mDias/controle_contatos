@@ -51,11 +51,10 @@ public class ClienteDAO {
 
     public void insert(Cliente cliente) throws Exception {
         try {
-            StringBuilder query = new StringBuilder("INSERT INTO Cliente(razao_social, telefones, cnpj_cpf, nome_fantasia,tipo,loja_risco,codigo,contato,");
+            StringBuilder query = new StringBuilder("INSERT INTO Cliente(razao_social, telefones, cnpj_cpf, nome_fantasia,tipo,loja_risco,codigo,contato ");
             query.append(cliente.getEndereco() != null ? ", id_endereco ) " : " ) ");
             query.append("VALUES (?,?,?,?,?,?,?,?");
-            query.append(cliente.getEndereco() != null ? ",?" : "");
-            query.append(")");
+            query.append(cliente.getEndereco() != null ? ",?)" : ")");
 
             Connection conn = this.manager.conectar();
             this.manager.abreTransacao();
@@ -86,7 +85,7 @@ public class ClienteDAO {
 
     public List<Cliente> getByParametros(Cliente cliente) throws Exception {
         try {
-            StringBuilder query = new StringBuilder("SELECT c.id as idCliente, c.razao_social, c.nome_fantasia, c.telefones, c.cnpj_cpf, c.codigo,c.contato ");
+            StringBuilder query = new StringBuilder("SELECT c.id as idCliente, c.razao_social, c.nome_fantasia, c.telefones, c.cnpj_cpf, c.codigo,c.contato,c.tipo,c.loja_risco, ");
             query.append(" e.id as idEndereco, e.logradouro, e.numero, e.complemento, e.bairro, e.municipio, e.cep, e.uf ");
             query.append(" FROM Cliente c LEFT JOIN Endereco e ON c.id_endereco = e.id ");
             query.append(" WHERE 1=1 ");
@@ -115,7 +114,7 @@ public class ClienteDAO {
                 }
                 
                 if (cliente.getCodigo() != null && cliente.getCodigo().length() > 0) {
-                    query.append(" AND c.codigo = ? ");
+                    query.append(" AND c.codigo LIKE ? ");
                 }
                
                 if (cliente.getContato() != null && cliente.getContato().length() > 0) {
@@ -183,7 +182,7 @@ public class ClienteDAO {
                 }
                 
                 if (cliente.getCodigo() != null && cliente.getCodigo().length() > 0) {
-                    ps.setString(posicao++, "%" + cliente.getCodigo() + "%");
+                    ps.setString(posicao++,cliente.getCodigo());
                 }
                 if (cliente.getContato() != null && cliente.getContato().length() > 0) {
                     ps.setString(posicao++, "%" + cliente.getContato() + "%");
@@ -235,6 +234,8 @@ public class ClienteDAO {
                 elemento.setCnpjCpf(rs.getString("cnpj_cpf"));
                 elemento.setCodigo(rs.getString("codigo"));
                 elemento.setContato(rs.getString("contato"));
+                elemento.setLojaRisco(rs.getString("loja_risco"));
+                elemento.setTipo(rs.getString("tipo"));
                 
                 enderecoElemento.setId(rs.getLong("idEndereco"));
                 enderecoElemento.setLogradouro(rs.getString("logradouro"));

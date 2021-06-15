@@ -85,16 +85,38 @@ public class InsertClientePresenter implements IPresenter{
             endereco.setMunicipio(this.view.getTxtMunicipio().getText());
             endereco.setComplemento(this.view.getTxtComplemento().getText());
             endereco.setUf(String.valueOf(this.view.getCbUf().getSelectedItem()));
-            endereco.setNumero(Integer.valueOf(this.view.getTxtNumero().getText()));
+            
+            var numero = this.view.getTxtNumero().getText().isEmpty() ? null : Integer.valueOf(this.view.getTxtNumero().getText());
+            endereco.setNumero(numero);
             endereco.setLogradouro(this.view.getTxtLogradouro().getText());
 
             novoCliente.setEndereco(endereco);
         
             this.clienteBusiness.insert(novoCliente);
             JOptionPane.showConfirmDialog(view, "Cliente inserido!", "Inserir Cliente", JOptionPane.DEFAULT_OPTION);
+            this.cleanView();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(view, "Falha ao inserir cliente", "Inserir Cliente", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(view, "Falha ao inserir cliente!\nValidar se os campos foram preenchidos corretamente", "Inserir Cliente", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
+    }
+    
+    private void cleanView(){
+        this.view.getTxtNomeFantasia().setText("");
+        this.view.getTxtRazaoSocial().setText("");
+        this.view.getTxtCnpjCpf().setText("");
+        this.view.getTxtTipo().setText("");
+        this.view.getTxtLojaRisco().setText("");
+        this.view.getTxtTelefone().setText("");
+        this.view.getTxtContato().setText("");
+        this.view.getTxtCodigo().setText("");
+
+        this.view.getTxtBairro().setText("");
+        this.view.getTxtCep().setText("");
+        this.view.getTxtMunicipio().setText("");
+        this.view.getTxtComplemento().setText("");
+        this.view.getCbUf().setSelectedItem("");
+        this.view.getTxtNumero().setText("");
+        this.view.getTxtLogradouro().setText("");
     }
 }

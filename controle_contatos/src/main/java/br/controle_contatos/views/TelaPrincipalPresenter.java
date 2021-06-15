@@ -8,6 +8,7 @@ package br.controle_contatos.views;
 import br.controle_contatos.views.clientes.InsertClientePresenter;
 import br.controle_contatos.views.clientes.ListClientePresenter;
 import br.controle_contatos.views.interfaces.IPresenter;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,6 +23,7 @@ public class TelaPrincipalPresenter implements IPresenter{
     public TelaPrincipalPresenter() {
         try{
             this.view = new TelaPrincipalView();
+            this.view.setExtendedState(Frame.MAXIMIZED_BOTH);
             this.initComponents();
             this.centralizarTela();
             this.view.setVisible(true);
